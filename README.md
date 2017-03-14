@@ -26,4 +26,6 @@ Desenvolver um game do gênero puzzle, com o objetivo de girar um quadrado com u
 
 * **_git push origin < nome-da-branch >_** - Faz upload das modificações para o repositório do GitHub. Para as features, o comando é _git push origin feature/< nome-da-feature >_
 
+* **_git pull_** - Atualiza as branches com a última versão do git
+
 ### OBS: Toda vez que a feature for finalizada, será redirecionado para a branch develop. Após isso acontecer, executar o comando git push origin develop para atualizar a branch no diretório do GitHub
