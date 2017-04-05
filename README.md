@@ -29,3 +29,5 @@ Desenvolver um game do gênero puzzle, com o objetivo de girar um quadrado com u
 * **_git pull_** - Atualiza as branches com a última versão do git
 
 ### OBS: Toda vez que a feature for finalizada, será redirecionado para a branch develop. Após isso acontecer, executar o comando git push origin develop para atualizar a branch no diretório do GitHub
+
+#### Link for website: [link](https://williamparlow.github.io/ProjetoProgIII/)
