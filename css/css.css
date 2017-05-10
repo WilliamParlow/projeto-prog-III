@@ -1,0 +1,21 @@
+body, html{
+
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+}
+/*#container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: auto;
+}*/
+ #canvasGame{
+    background:url(../img/img1.jpg);
+    background-size: cover;
+    z-index: -1;
+    position: absolute;
+
+  }
