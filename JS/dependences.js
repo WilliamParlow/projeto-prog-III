@@ -10,9 +10,6 @@ var predio = {
 
 var predios = new Array();
 
-
-
-
 /*
   Main.js dependences
 */
@@ -27,13 +24,13 @@ var playercriado =false;
 var isPlayer1 = true;
 var image = new Image();
 
-
-
+var hipotenusa;
+var intervaloJogada;
 /*
 projectil.js dependences
 */
-var frameRate = 1/40; // Seconds
-var frameDelay = frameRate * 1000; // ms
+var frameRate = 1/50; // Seconds
+var frameDelay = frameRate * 2500; // ms
 var loopTimer = false;
 
 var projectilPlayer1 = {
@@ -46,7 +43,6 @@ var projectilPlayer1 = {
   rho: 1.22, // kg / m^3
   A: Math.PI * this.radius * this.radius / (10000), // m^2
   ag: 9.81,  // m / s^2
-  mouse: {x: 0, y: 0, isDown: false},
   image: new Image()
 };
 
@@ -60,7 +56,6 @@ var projectilPlayer2 = {
   rho: 1.22, // kg / m^3
   A: Math.PI * this.radius * this.radius / (10000), // m^2
   ag: 9.81,  // m / s^2
-  mouse: {x: 0, y: 0, isDown: false},
   image: new Image()
 };
 

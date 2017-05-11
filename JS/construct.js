@@ -85,7 +85,7 @@ function canvas_text(context,click,posicao){
 function calculaAngulo(click,posicao){
   var catetoAdj = (posicao.x-click.x);
   var catetoOps = posicao.y - click.y;
-  var hipotenusa = Math.sqrt(Math.pow(catetoAdj,2)+ Math.pow(catetoOps,2));
+ hipotenusa = Math.sqrt(Math.pow(catetoAdj,2)+ Math.pow(catetoOps,2));
   var angulo = Math.asin(catetoOps/hipotenusa);
   angulo = Math.round(Math.degrees(angulo));
   return {

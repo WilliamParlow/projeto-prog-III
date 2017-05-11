@@ -17,7 +17,6 @@ $('#canvasTeste').mousedown(function(e){ // coordenadas do click sobre o canvas
     x : e.pageX - this.offsetLeft,
     y : e.pageY - this.offsetTop
   };
-  loopTimer = setInterval(loop(projectilPlayer1), frameDelay);
   clicado = true;
 });
 
@@ -26,17 +25,15 @@ $('#canvasTeste').mousedown(function(e){ // coordenadas do click sobre o canvas
 $('#canvasTeste').mouseup(function(e){
   clicado = false;
   teste.clearRect(0,0,canvasteste.width,canvasteste.height);
-
-  /*if (isPlayer1) {
+intervaloJogada = setInterval(loop, frameDelay);
+  if(isPlayer1){
     isPlayer1 = false;
-
-    teste.drawImage(projectilPlayer1.image, projectilPlayer1.position.x, projectilPlayer1.position.y);
-  } else {
-    teste.drawImage(projectilPlayer2.image, projectilPlayer2.position.x, projectilPlayer2.position.y);
+    projectilPlayer1.velocity.y = (mouseclick.y - mousePos.y) /40;
+    projectilPlayer1.velocity.x = (mouseclick.x ) / 40;
+  }else{
     isPlayer1 = true;
+    projectilPlayer2.velocity.y = (mouseclick.y - mousePos.y) /40;
+    projectilPlayer2.velocity.x = (mouseclick.x ) / 40;
   }
-*/
-
-loopTimer = setInterval(loop(projectilPlayer1), frameDelay);
-
-});
+  }
+);
