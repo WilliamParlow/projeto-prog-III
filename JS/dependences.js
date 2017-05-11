@@ -1,15 +1,10 @@
 /*
 Construct.js dependences
 */
-var predio = {
-  XInicial:0,
-  YInicial:0,
-  XFinal:0,
-  YFinal:0
-};
+
 
 var predios = new Array();
-
+var indicePredios = 0;
 /*
   Main.js dependences
 */
@@ -25,13 +20,16 @@ var isPlayer1 = true;
 var image = new Image();
 
 var hipotenusa;
-var intervaloJogada;
 /*
 projectil.js dependences
 */
 var frameRate = 1/50; // Seconds
 var frameDelay = frameRate * 2500; // ms
-var loopTimer = false;
+var numeroJogada = 0;
+var projectilPosIniX;
+var projectilPosIniY;
+var num; //define o numero do player na frase "vez do player x"
+var projectilAngle = 0; // angulo da imagem do projetil.
 
 var projectilPlayer1 = {
   position: {x: 0, y: 0},

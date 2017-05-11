@@ -25,15 +25,15 @@ $('#canvasTeste').mousedown(function(e){ // coordenadas do click sobre o canvas
 $('#canvasTeste').mouseup(function(e){
   clicado = false;
   teste.clearRect(0,0,canvasteste.width,canvasteste.height);
-intervaloJogada = setInterval(loop, frameDelay);
+  intervaloJogada = setInterval(jogada, frameDelay);
   if(isPlayer1){
     isPlayer1 = false;
-    projectilPlayer1.velocity.y = (mouseclick.y - mousePos.y) /40;
-    projectilPlayer1.velocity.x = (mouseclick.x ) / 40;
+    projectilPlayer1.velocity.y = limitaVelocidade().y;
+    projectilPlayer1.velocity.x = limitaVelocidade().x;
   }else{
     isPlayer1 = true;
-    projectilPlayer2.velocity.y = (mouseclick.y - mousePos.y) /40;
-    projectilPlayer2.velocity.x = (mouseclick.x ) / 40;
+    projectilPlayer2.velocity.y = limitaVelocidade().y;
+    projectilPlayer2.velocity.x = limitaVelocidade().x;
   }
   }
 );

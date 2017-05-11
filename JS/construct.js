@@ -20,16 +20,22 @@ function buildscenario(context){
 
 // Cria os predios
 function createBuilding(altura, largura, larguraTotal){
+  var predio = {
+    XInicial:0,
+    YInicial:0,
+    XFinal:0,
+    YFinal:0
+  };
   // Cria o bloco do prédio
   context.fillStyle="#555";
   context.fillRect(larguraTotal,altura,largura,canvas.height - altura);
-  predio.XFinal = largura;
+  predio.XFinal = largura + larguraTotal;
   predio.XInicial = larguraTotal;
-  predio.YFinal = canvas.height - altura;
+  predio.YFinal = 600;
   predio.YInicial = altura;
 
-  //  predios = predios.push(predio);
-
+  predios[indicePredios] = predio;
+  indicePredios++;
   // Cria as janelas do prédio.
   var qtdJanelaLinha = largura/15;
   var qtdJanelaColuna = (canvas.height-altura)/25;
