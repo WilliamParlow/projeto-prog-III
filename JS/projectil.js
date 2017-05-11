@@ -1,39 +1,3 @@
-var frameRate = 1/40; // Seconds
-var frameDelay = frameRate * 1000; // ms
-var loopTimer = false;
-
-var projectilPlayer1 = {
-  position: {x: 0, y: 0},
-  velocity: {x: 10, y: 0},
-  mass: 0.1, //kg
-  radius: 15, // 1px = 1cm
-  restitution: -0.7,
-  Cd: 0.47,  // Dimensionless
-  rho: 1.22, // kg / m^3
-  A: Math.PI * this.radius * this.radius / (10000), // m^2
-  ag: 9.81,  // m / s^2
-  mouse: {x: 0, y: 0, isDown: false},
-  image: new Image()
-};
-
-var projectilPlayer2 = {
-  position: {x: 0, y: 0},
-  velocity: {x: 10, y: 0},
-  mass: 0.1, //kg
-  radius: 15, // 1px = 1cm
-  restitution: -0.7,
-  Cd: 0.47,  // Dimensionless
-  rho: 1.22, // kg / m^3
-  A: Math.PI * this.radius * this.radius / (10000), // m^2
-  ag: 9.81,  // m / s^2
-  mouse: {x: 0, y: 0, isDown: false},
-  image: new Image()
-};
-
-
-
-
-
 function getMousePosition(e , projectil) {
     mouse.x = e.pageX - canvas.offsetLeft;
     mouse.y = e.pageY - canvas.offsetTop;

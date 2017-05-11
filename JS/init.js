@@ -1,0 +1,2 @@
+// Init function
+buildscenario(context);

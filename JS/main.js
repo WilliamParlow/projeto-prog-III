@@ -1,15 +1,4 @@
-var canvas  =  document.querySelector("#canvasGame");
-var canvasteste = document.querySelector("#canvasTeste");
-var context = canvas.getContext('2d');
-var teste =  canvasteste.getContext('2d');
-var mousePos;
-var mouseclick;
-var clicado = false;
-var playercriado =false;
-var isPlayer1 = true;
-var image = new Image();
-
-buildscenario(context);
+// Função ao mover o mouse
 $('#canvasTeste').mousemove(function(e){ // coordenadas da posição do mouse sobre o canvas
   mousePos = {
     x : e.pageX - this.offsetLeft,
@@ -21,6 +10,8 @@ $('#canvasTeste').mousemove(function(e){ // coordenadas da posição do mouse so
   }
 });
 
+
+// Função ao precionar o mouse
 $('#canvasTeste').mousedown(function(e){ // coordenadas do click sobre o canvas
   mouseclick = {
     x : e.pageX - this.offsetLeft,
@@ -29,13 +20,15 @@ $('#canvasTeste').mousedown(function(e){ // coordenadas do click sobre o canvas
   clicado = true;
 });
 
+
+// Função ao soltar o botão do mouse
 $('#canvasTeste').mouseup(function(e){
   clicado = false;
   teste.clearRect(0,0,canvasteste.width,canvasteste.height);
 
   if (isPlayer1) {
     isPlayer1 = false;
-  
+
     teste.drawImage(projectilPlayer1.image, projectilPlayer1.position.x, projectilPlayer1.position.y);
   } else {
     teste.drawImage(projectilPlayer2.image, projectilPlayer2.position.x, projectilPlayer2.position.y);
