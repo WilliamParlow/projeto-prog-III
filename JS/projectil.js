@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var frameRate = 1/40; // Seconds
 var frameDelay = frameRate * 1000; // ms
 var loopTimer = false;
@@ -40,6 +41,13 @@ $('#canvasTeste').mousemove(function(e) {
 });
 
 $('#canvasTeste').mousedown(function(e) {
+=======
+function getMousePosition(e , projectil) {
+    mouse.x = e.pageX - canvas.offsetLeft;
+    mouse.y = e.pageY - canvas.offsetTop;
+}
+var mouseDown = function(e , projectil) {
+>>>>>>> origin/master
     if (e.which == 1) {
         getMousePosition(e);
         mouse.isDown = true;
@@ -108,7 +116,6 @@ var i = 0;
     teste.translate(projectil.position.x, projectil.position.y);
     teste.beginPath();
     teste.drawImage(projectil.image, canvas.width/2,canvas.height/2);
-    teste.arc (0,0,10,0,Math.PI * 2 , true);
     teste.fill();
     teste.closePath();
 

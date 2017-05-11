@@ -1,12 +1,4 @@
-
-var predio = {
-  XInicial:0,
-  YInicial:0,
-  XFinal:0,
-  YFinal:0
-};
-var predios = new Array();
-
+// cria o senário
 function buildscenario(context){
   var largTotal = 0; // recebe a largura total já desenhada no cavas, serve de referencia para saber onde deve ser desenhando o proximo prédio
   while(largTotal < canvas.width){
@@ -26,6 +18,7 @@ function buildscenario(context){
 
 }
 
+// Cria os predios
 function createBuilding(altura, largura, larguraTotal){
   // Cria o bloco do prédio
   context.fillStyle="#555";
@@ -35,7 +28,7 @@ function createBuilding(altura, largura, larguraTotal){
   predio.YFinal = canvas.height - altura;
   predio.YInicial = altura;
 
-//  predios = predios.push(predio);
+  //  predios = predios.push(predio);
 
   // Cria as janelas do prédio.
   var qtdJanelaLinha = largura/15;
@@ -50,6 +43,7 @@ function createBuilding(altura, largura, larguraTotal){
   }
 }
 
+// Cria a flecha que aponta a direção para lançar o objeto
 function canvas_arrow(context, fromx, fromy, tox, toy){
   context.beginPath();
   context.clearRect(0,0,canvasteste.width,canvasteste.height);
@@ -67,6 +61,7 @@ function canvas_arrow(context, fromx, fromy, tox, toy){
 
 }
 
+// Cria o texto do valor do ângulo e força
 function canvas_text(context,click,posicao){
   var num =Math.round(calculaAngulo(click,posicao).h/2.5);
   if(num<0){
@@ -86,6 +81,7 @@ function canvas_text(context,click,posicao){
 
 }
 
+// Calcula o ângulo
 function calculaAngulo(click,posicao){
   var catetoAdj = (posicao.x-click.x);
   var catetoOps = posicao.y - click.y;
@@ -103,6 +99,7 @@ Math.degrees = function(radians) {
   return radians * (180 / 3.14159265359);
 };
 
+// Cria os players
 function criaPlayer(numPlayer, canvas,altura, largura){
   switch (numPlayer){
     case 1:
