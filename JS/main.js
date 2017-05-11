@@ -17,6 +17,7 @@ $('#canvasTeste').mousedown(function(e){ // coordenadas do click sobre o canvas
     x : e.pageX - this.offsetLeft,
     y : e.pageY - this.offsetTop
   };
+  loopTimer = setInterval(loop(projectilPlayer1), frameDelay);
   clicado = true;
 });
 
@@ -38,5 +39,4 @@ $('#canvasTeste').mouseup(function(e){
 
 loopTimer = setInterval(loop(projectilPlayer1), frameDelay);
 
-setInterval(loop(projectilPlayer1), 1000);
 });

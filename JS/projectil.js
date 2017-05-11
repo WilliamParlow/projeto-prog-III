@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 var frameRate = 1/40; // Seconds
 var frameDelay = frameRate * 1000; // ms
 var loopTimer = false;
@@ -31,44 +31,7 @@ var projectilPlayer2 = {
   image: new Image()
 };
 
-
-
-
-/*
-$('#canvasTeste').mousemove(function(e) {
-   projectilPlayer1.mouse.x = e.pageX - canvas.offsetLeft;
-    projectilPlayer1.mouse.y = e.pageY - canvas.offsetTop;
-});
-
-$('#canvasTeste').mousedown(function(e) {
-=======
-function getMousePosition(e , projectil) {
-    mouse.x = e.pageX - canvas.offsetLeft;
-    mouse.y = e.pageY - canvas.offsetTop;
-}
-var mouseDown = function(e , projectil) {
->>>>>>> origin/master
-    if (e.which == 1) {
-        getMousePosition(e);
-        mouse.isDown = true;
-        projectilPlayer1.position.x = mouse.x;
-        projectilPlayer1.position.y = mouse.y;
-    }
-});
-$('#canvasTeste').mouseup(function(e) {
-    if (e.which == 1) {
-        console.log(e.which);
-        mouse.isDown = false;
-        projectilPlayer1.velocity.y = (projectil.position.y - mouse.y) /10;
-        projectilPlayer1.velocity.x = (projectil.position.x - mouse.x) / 10;
-    }
-});
-*/
-
-
-
 var loop = function(projectil) {
-var i = 0;
 
    if (!clicado) {
 
@@ -92,34 +55,16 @@ var i = 0;
         projectil.position.y += projectil.velocity.y*frameRate*100;
    }
 
-    /*
-    // Handle collisions
-    if (projectil.position.y > height - projectil.radius) {
-        projectil.velocity.y *= projectil.restitution;
-        projectil.position.y = height - projectil.radius;
-    }
-    if (projectil.position.x > width - projectil.radius) {
-        projectil.velocity.x *= projectil.restitution;
-        projectil.position.x = width - projectil.radius;
-    }
-    if (projectil.position.x < projectil.radius) {
-        projectil.velocity.x *= projectil.restitution;
-        projectil.position.x = projectil.radius;
-    }
-    // Draw the projectil
-*/
+
 
     teste.clearRect(0,0,teste.width,teste.height);
 
     teste.save();
-
-    teste.translate(projectil.position.x, projectil.position.y);
     teste.beginPath();
-    teste.drawImage(projectil.image, canvas.width/2,canvas.height/2);
-    teste.fill();
+    teste.drawImage(projectil.image, projectil.position.x,projectil.position.y);
+
     teste.closePath();
 
-    teste.restore();
 
 
 
