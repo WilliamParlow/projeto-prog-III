@@ -33,42 +33,36 @@ var projectilPlayer2 = {
 
 
 
+/*
+$('#canvasTeste').mousemove(function(e) {
+   projectilPlayer1.mouse.x = e.pageX - canvas.offsetLeft;
+    projectilPlayer1.mouse.y = e.pageY - canvas.offsetTop;
+});
 
-function getMousePosition(e , projectil) {
-    mouse.x = e.pageX - canvas.offsetLeft;
-    mouse.y = e.pageY - canvas.offsetTop;
-}
-var mouseDown = function(e , projectil) {
+$('#canvasTeste').mousedown(function(e) {
     if (e.which == 1) {
         getMousePosition(e);
         mouse.isDown = true;
-        projectil.position.x = mouse.x;
-        projectil.position.y = mouse.y;
+        projectilPlayer1.position.x = mouse.x;
+        projectilPlayer1.position.y = mouse.y;
     }
-}
-var mouseUp = function(e, projectil) {
+});
+$('#canvasTeste').mouseup(function(e) {
     if (e.which == 1) {
         console.log(e.which);
         mouse.isDown = false;
-        projectil.velocity.y = (projectil.position.y - mouse.y) /10;
-        projectil.velocity.x = (projectil.position.x - mouse.x) / 10;
+        projectilPlayer1.velocity.y = (projectil.position.y - mouse.y) /10;
+        projectilPlayer1.velocity.x = (projectil.position.x - mouse.x) / 10;
     }
-}
+});
+*/
 
-var setup = function(projectil1, projectil2) {
 
-    canvas.onmousemove = getMousePosition;
-    canvas.onmousedown = mouseDown;
-    canvas.onmouseup = mouseUp;
-
-    teste.fillStyle = 'red';
-    teste.strokeStyle = '#000000';
-    loopTimer = setInterval(loop(projectil1), frameDelay);
-}
 
 var loop = function(projectil) {
+var i = 0;
 
-    if ( !clicado) {
+   if (!clicado) {
 
         // Do physics
             // Drag force: Fd = -1/2 * Cd * A * rho * v * v
@@ -88,7 +82,7 @@ var loop = function(projectil) {
             // Integrate to get position
         projectil.position.x += projectil.velocity.x*frameRate*100;
         projectil.position.y += projectil.velocity.y*frameRate*100;
-    }
+   }
 
     /*
     // Handle collisions
@@ -113,10 +107,13 @@ var loop = function(projectil) {
 
     teste.translate(projectil.position.x, projectil.position.y);
     teste.beginPath();
+    teste.drawImage(projectil.image, canvas.width/2,canvas.height/2);
+    teste.arc (0,0,10,0,Math.PI * 2 , true);
+    teste.fill();
     teste.closePath();
 
     teste.restore();
 
-}
 
-    setup(projectilPlayer1, projectilPlayer2);
+
+}

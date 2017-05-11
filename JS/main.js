@@ -33,13 +33,17 @@ $('#canvasTeste').mouseup(function(e){
   clicado = false;
   teste.clearRect(0,0,canvasteste.width,canvasteste.height);
 
-  if (isPlayer1) {
+  /*if (isPlayer1) {
     isPlayer1 = false;
-  
+
     teste.drawImage(projectilPlayer1.image, projectilPlayer1.position.x, projectilPlayer1.position.y);
   } else {
     teste.drawImage(projectilPlayer2.image, projectilPlayer2.position.x, projectilPlayer2.position.y);
     isPlayer1 = true;
   }
+*/
 
+loopTimer = setInterval(loop(projectilPlayer1), frameDelay);
+
+setInterval(loop(projectilPlayer1), 1000);
 });
