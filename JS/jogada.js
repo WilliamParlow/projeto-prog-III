@@ -53,12 +53,12 @@ var player;
         projectil.position.y += projectil.velocity.y;
 
 
-    teste.beginPath();
-    teste.clearRect(0,0,canvasTeste.width,canvasTeste.height);
-    teste.closePath();
+    contextoTemporario.beginPath();
+    contextoTemporario.clearRect(0,0,canvasTemporario.width,canvasTemporario.height);
+    contextoTemporario.closePath();
 
     // Rotaciona projetil em "projectilAngleº", desenhando ele nas posições x,y e por ultimo, as coordenadas do eixo de rotação
-    rotacionaProjetil ( teste, projectil.image, projectilAngle*(Math.PI/180), projectil.position.x, projectil.position.y, 15, 12 );
+    rotacionaProjetil ( contextoTemporario, projectil.image, projectilAngle*(Math.PI/180), projectil.position.x, projectil.position.y, 15, 12 );
     projectilAngle += 25;
 
     analisaImpactoPlayer(projectil, player);
@@ -152,7 +152,7 @@ function encerraJogada(projetil){
   projetil.position.y = projectilPosIniY;
   projetil.position.x = projectilPosIniX;
   numeroJogada=0;
-  teste.clearRect(0,0,canvasTeste.width,canvasTeste.height); //impede que o projetil fique congelado onde o impacto acontece
+  contextoTemporario.clearRect(0,0,canvasTemporario.width,canvasTemporario.height); //impede que o projetil fique congelado onde o impacto acontece
   console.log("Player " + num);
 window.clearInterval(intervaloJogada);
 }

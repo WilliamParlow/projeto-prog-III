@@ -52,7 +52,7 @@ function createBuilding(altura, largura, larguraTotal){
 // Cria a flecha que aponta a direção para lançar o objeto
 function canvas_arrow(context, fromx, fromy, tox, toy){
   context.beginPath();
-  context.clearRect(0,0,canvasteste.width,canvasteste.height);
+  context.clearRect(0,0,canvasTemporario.width,canvasTemporario.height);
 
   var headlen = 20;   // length of head in pixels
   var angle = Math.atan2(toy-fromy,tox-fromx);

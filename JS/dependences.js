@@ -9,9 +9,9 @@ var indicePredios = 0;
   Main.js dependences
 */
 var canvas  =  document.querySelector("#canvasGame");
-var canvasteste = document.querySelector("#canvasTeste");
+var canvasTemporario = document.querySelector("#canvasTemporario");
 var context = canvas.getContext('2d');
-var teste =  canvasteste.getContext('2d');
+var contextoTemporario =  canvasTemporario.getContext('2d');
 var mousePos;
 var mouseclick;
 var clicado = false;
@@ -23,7 +23,7 @@ var hipotenusa;
 /*
 projectil.js dependences
 */
-var frameRate = 1/50; // Seconds
+var frameRate = 1/80; // Seconds
 var frameDelay = frameRate * 2500; // ms
 var numeroJogada = 0;
 var projectilPosIniX;
