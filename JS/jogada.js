@@ -65,8 +65,13 @@ var player;
     analisaImpactoPredio(projectil);
 
 // identifica se o projetil saiu da tela para resetar tudo, possibilitando nova jogada
-    if(projectil.position.x > 1000 || projectil.position.y > 600 || projectil.position.x < 0 || projectil.position.y < 0 ){
-      alert("Pra fooooooraaaaa!!!!!");
+    if(projectil.position.x > 1000 || projectil.position.y > 600 || projectil.position.x < 0 ){
+      swal({
+        title: "Pra fooooooraaaaa!!!",
+        timer: 1000,
+        showConfirmButton: true,
+        type: "error"
+      });
       encerraJogada(projectil);
     }
 
@@ -108,7 +113,12 @@ if(y<(limite-(2*limite))){
 function analisaImpactoPlayer(projetil, player){
   if(projetil.position.x > player.posicao.x && projetil.position.x <(player.posicao.x +player.tamanho.width)){
     if(projetil.position.y > player.posicao.y && projetil.position.y <(player.posicao.y +player.tamanho.height)){
-      alert("Você acertou, motherfucker!");
+      swal({
+    title: "Você acertou, motherfucker!",
+    timer: 2000,
+    showConfirmButton: true,
+    type: "success"
+  });
       encerraJogada(projetil);
     }
   }
@@ -118,7 +128,20 @@ function analisaImpactoPredio(projetil){
   for(var i = 0; i< predios.length; i++){
     if(projetil.position.x > predios[i].XInicial && projetil.position.x < predios[i].XFinal){
       if(projetil.position.y > predios[i].YInicial && projetil.position.y < predios[i].YFinal){
-          alert("Você acertou um predio. Loser!");
+        swal({
+      title: "Right in the building, loser!",
+      timer: 1000,
+      showConfirmButton: true,
+      type: "error",
+    }).then(
+  function () {},
+  // handling the promise rejection
+  function (dismiss) {
+    if (dismiss === 'timer') {
+      console.log('I was closed by the timer')
+    }
+  }
+);
           encerraJogada(projetil);
       }
     }
@@ -130,6 +153,6 @@ function encerraJogada(projetil){
   projetil.position.x = projectilPosIniX;
   numeroJogada=0;
   teste.clearRect(0,0,canvasTeste.width,canvasTeste.height); //impede que o projetil fique congelado onde o impacto acontece
-  alert("Vez do Player " + num);
-  window.clearInterval(intervaloJogada);
+  console.log("Player " + num);
+window.clearInterval(intervaloJogada);
 }

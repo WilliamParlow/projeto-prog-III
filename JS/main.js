@@ -17,6 +17,7 @@ $('#canvasTeste').mousedown(function(e){ // coordenadas do click sobre o canvas
     x : e.pageX - this.offsetLeft,
     y : e.pageY - this.offsetTop
   };
+
   clicado = true;
 });
 
