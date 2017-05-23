@@ -17,7 +17,7 @@ var player;
         player = player2;
   }
   }
-  
+
     if(isPlayer1 && numeroJogada === 0){
     projectil = projectilPlayer2;
     projectilPosIniX = projectil.position.x;
@@ -127,21 +127,29 @@ function analisaImpactoPlayer(projetil, player){
 
 function analisaImpactoPredio(projetil){
   for(var i = 0; i< predios.length; i++){
-    if(projetil.position.x > predios[i].XInicial && projetil.position.x < predios[i].XFinal){
+    if(projetil.position.x > predios[i].XInicial && projetil.position.x < predios[i].XFinal){ //testa se está na área de um predio
       if(projetil.position.y > predios[i].YInicial && projetil.position.y < predios[i].YFinal){
+        for(var k = 0 ; k<damages.length;k++){ // varre o vetor de damages a fim de se certificar que o projetil está dentro de uma área já destruida
+          if(projetil.position.x > damages[k].xin && projetil.position.x < damages[k].xfinal){
+            if(projetil.position.y > damages[k].yin && projetil.position.y <  damages[k].yfinal){
+                return 0; //se o projetil está em área já destruida, o projetil segue a trajetória.
+            }
+          }
+        }
         swal({
       title: "Right in the building, loser!",
       timer: 1000,
       showConfirmButton: true,
       type: "error",
     }).then(
-  function () {},
-  // handling the promise rejection
-  function (dismiss) {
-    if (dismiss === 'timer') {
-    }
-  }
-);
+              function () {},
+              // handling the promise rejection
+              function (dismiss) {
+                if (dismiss === 'timer') {
+                }
+              }
+            );
+          createDamage(projetil,context);
           encerraJogada(projetil);
       }
     }
@@ -155,4 +163,17 @@ function encerraJogada(projetil){
   contextoTemporario.clearRect(0,0,canvasTemporario.width,canvasTemporario.height); //impede que o projetil fique congelado onde o impacto acontece
   console.log("Player " + num);
 window.clearInterval(intervaloJogada);
+}
+
+function createDamage(projetil,context){
+
+  context.clearRect(projetil.position.x-20,projetil.position.y-20,40,40);
+  var damage = new Object();
+  damage.xin= projetil.position.x-20;
+  damage.yin= projetil.position.y-20;
+  damage.xfinal = projetil.position.x+20;
+  damage.yfinal = projetil.position.y+20;
+  damages.push(damage);
+
+
 }

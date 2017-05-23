@@ -1,4 +1,4 @@
-/* imagens para seleção de jogador*/
+/* imagens para seleção de personagem*/
 var opcaoPlayer1;
 var opcaoPlayer2;
 var opcoes = []; // vetor que armazena todas as imagens das opcoes de jogadores
@@ -27,11 +27,10 @@ var mouseclick;
 var clicado = false;
 var playercriado =false;
 var isPlayer1 = true;
-var image = new Image();
-
 var hipotenusa;
+
 /*
-projectil.js dependences
+jogada.js dependences
 */
 var frameRate = 1/80; // Seconds
 var frameDelay = frameRate * 2500; // ms
@@ -67,19 +66,14 @@ var projectilPlayer2 = {
   image: new Image()
 };
 
-
-
-
-
-/*
-player.js dependences
-*/
 var player1 = {
   tamanho : { },
   posicao : { }
-}
+};
 
 var player2 = {
   tamanho : { },
   posicao : { }
-}
+};
+
+var damages = []; // salva todos os danos, de todos os prédios
