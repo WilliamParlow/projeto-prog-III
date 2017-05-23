@@ -111,10 +111,10 @@ function criaPlayer(numPlayer, canvas,altura, largura){
   switch (numPlayer){
     case 1:
     var player = new Image();
-    player.src = imagePlayers[opcaoPlayer1-1].src;
+    player.src = opcoes[opcaoPlayer1-1].ingame.src;
     player.onload = function(){
       canvas.drawImage(player, 20, altura-104); // tamanho em px do icone do player
-      projectilPlayer1.image.src = imageProjeteis[opcaoPlayer1-1].src;
+      projectilPlayer1.image.src = opcoes[opcaoPlayer1-1].projetil.src;
       player1.posicao.x = 20;
       player1.posicao.y = altura-104;
       player1.tamanho.width = player.width;
@@ -125,10 +125,10 @@ function criaPlayer(numPlayer, canvas,altura, largura){
     break;
     case 2:
     var player = new Image();
-    player.src = imagePlayers[opcaoPlayer2-1].src;
+    player.src = opcoes[opcaoPlayer2-1].ingame.src;
     player.onload = function(){
       canvas.drawImage(player, largura, altura-104); // tamanho em px do icone do player
-      projectilPlayer2.image.src = imageProjeteis[opcaoPlayer2-1].src;
+      projectilPlayer2.image.src = opcoes[opcaoPlayer2-1].projetil.src;
       player2.posicao.x = largura;
       player2.posicao.y = altura-97;
       player2.tamanho.width = player.width;
@@ -179,4 +179,19 @@ function seleciona_opcao(coordenadas){
     console.log(opcaoselecionada);
     return opcaoselecionada;
 
+}
+
+function constroiObjetosImages(){
+
+      for(var i=0;i<politicians.length;i++){
+        var opcao = new Object();
+        opcao.select = new Image();
+        opcao.projetil = new Image();
+        opcao.ingame = new Image();
+        opcao.select.src = "img/select_"+politicians[i]+".jpg";
+        opcao.projetil.src = "img/projetil_"+politicians[i]+".png";
+        opcao.ingame.src = "img/ingame_"+politicians[i]+".png";
+        opcoes.push(opcao);
+
+  }
 }

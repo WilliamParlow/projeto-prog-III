@@ -17,7 +17,7 @@ var player;
         player = player2;
   }
   }
-
+  
     if(isPlayer1 && numeroJogada === 0){
     projectil = projectilPlayer2;
     projectilPosIniX = projectil.position.x;
