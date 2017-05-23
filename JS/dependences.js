@@ -1,3 +1,47 @@
+/* imagens para seleção de jogador*/
+var opcaoPlayer1;
+var opcaoPlayer2;
+var preencheArray = function(src){ //função que preenche os vetores opcoes/imagePlayers e imageProjeteis
+  var img = new Image();
+    img.src   = src;
+    return img;
+};
+var opcoes = []; // vetor que armazena imagens das opcoes de jogadores
+opcoes.push(preencheArray('img/select_obama.jpg'));
+opcoes.push(preencheArray('img/select_kim.jpg'));
+opcoes.push(preencheArray('img/select_elizabeth.jpg'));
+opcoes.push(preencheArray('img/select_trump.png'));
+opcoes.push(preencheArray('img/select_lula.jpg'));
+opcoes.push(preencheArray('img/select_dilma.jpg'));
+opcoes.push(preencheArray('img/select_putin.jpg'));
+opcoes.push(preencheArray('img/select_justin.jpg'));
+
+var imagePlayers = []; //vetor de imagens dos personagens ingame
+imagePlayers.push(preencheArray('img/ingame_obama.png'));
+imagePlayers.push(preencheArray('img/ingame_kim.png'));
+imagePlayers.push(preencheArray('img/ingame_elizabeth.png'));
+imagePlayers.push(preencheArray('img/ingame_trump.png'));
+imagePlayers.push(preencheArray('img/ingame_lula.png'));
+imagePlayers.push(preencheArray('img/ingame_dilma.png'));
+imagePlayers.push(preencheArray('img/ingame_putin.png'));
+imagePlayers.push(preencheArray('img/ingame_justin.png'));
+
+var imageProjeteis = []; // imagens dos projeteis de cada personagem
+imageProjeteis.push(preencheArray('img/projetil_obama.png'));
+imageProjeteis.push(preencheArray('img/projetil_kim.png'));
+imageProjeteis.push(preencheArray('img/projetil_elizabeth.png'));
+imageProjeteis.push(preencheArray('img/projetil_trump.png'));
+imageProjeteis.push(preencheArray('img/projetil_lula.png'));
+imageProjeteis.push(preencheArray('img/projetil_dilma.png'));
+imageProjeteis.push(preencheArray('img/projetil_putin.png'));
+imageProjeteis.push(preencheArray('img/projetil_justin.png'));
+
+
+
+var player1selecionado = false;
+var player2selecionado = false;
+
+
 /*
 Construct.js dependences
 */

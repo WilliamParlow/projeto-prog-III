@@ -2,6 +2,7 @@
 var jogada = function() {
   // define qual o jogador que está sendo manipulado agora. Se for o primeiro frame da jogada
   // grava as posições iniciais para resetar após a jogada ser finalizada
+
 var projectil;
 var player;
   if(!isPlayer1 && numeroJogada === 0){
@@ -138,7 +139,6 @@ function analisaImpactoPredio(projetil){
   // handling the promise rejection
   function (dismiss) {
     if (dismiss === 'timer') {
-      console.log('I was closed by the timer')
     }
   }
 );

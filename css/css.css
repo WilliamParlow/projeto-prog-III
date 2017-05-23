@@ -13,7 +13,7 @@ body, html{
   height: auto;
 }*/
  #canvasGame{
-    background:url(../img/img1.jpg);
+    background:url(../img/bandeira2.jpg);
     background-size: cover;
     z-index: -1;
     position: absolute;
