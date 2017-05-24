@@ -28,7 +28,7 @@ function createBuilding(altura, largura, larguraTotal){
     YFinal:0
   };
   // Cria o bloco do prédio
-  context.fillStyle="#555";
+  context.fillStyle="#002040";
   context.fillRect(larguraTotal,altura,largura,canvas.height - altura);
   predio.XFinal = largura + larguraTotal;
   predio.XInicial = larguraTotal;
@@ -38,13 +38,24 @@ function createBuilding(altura, largura, larguraTotal){
   predios[indicePredios] = predio;
   indicePredios++;
   // Cria as janelas do prédio.
-  var qtdJanelaLinha = largura/15;
-  var qtdJanelaColuna = (canvas.height-altura)/25;
+  var qtdJanelaLinha = largura;
+  var qtdJanelaColuna = (canvas.height-altura)/7;
   for(var i = 1 ; i<(qtdJanelaLinha); i++){
     for(var j = 1; j < (qtdJanelaColuna); j++){
-      if((i*25)<(largura -20)){ // serve para não haver colunas de janelas depois que o prédio terminou
-        context.fillStyle="#CC0";
-        context.fillRect(larguraTotal+(i*25),altura + (j*25),10,20);
+      if((i*20)<(largura -20)){ // serve para não haver colunas de janelas depois que o prédio terminou
+        var color = Math.round(Math.random()+1);
+        console.log(color);
+        switch (color){
+          case 1:
+          context.fillStyle="#A96733";
+          context.fillRect(larguraTotal+(i*20),altura + (j*15),14,7);
+          break;
+          case 2:
+          context.fillStyle="#065F7F";
+          context.fillRect(larguraTotal+(i*20),altura + (j*15),14,7);
+          break;
+        }
+
       }
     }
   }
