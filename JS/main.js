@@ -4,7 +4,9 @@ $('#canvasTemporario').mousemove(function(e){ // coordenadas da posição do mou
     x : e.pageX - this.offsetLeft,
     y : e.pageY - this.offsetTop
   };
+
   if(clicado){
+
     canvas_arrow(contextoTemporario,mousePos.x,mousePos.y,mouseclick.x,mouseclick.y);
     canvas_text(contextoTemporario,mouseclick,mousePos);
   }
@@ -17,24 +19,30 @@ $('#canvasTemporario').mousedown(function(e){ // coordenadas do click sobre o ca
     x : e.pageX - this.offsetLeft,
     y : e.pageY - this.offsetTop
   };
+  if(player1selecionado && player2selecionado){
+      clicado = true;
+    }
 
-  clicado = true;
 });
 
 
 // Função ao soltar o botão do mouse
 $('#canvasTemporario').mouseup(function(e){
-  clicado = false;
-  contextoTemporario.clearRect(0,0,canvasTemporario.width,canvasTemporario.height);
-  intervaloJogada = setInterval(jogada, frameDelay);
-  if(isPlayer1){
-    isPlayer1 = false;
-    projectilPlayer1.velocity.y = limitaVelocidade().y;
-    projectilPlayer1.velocity.x = limitaVelocidade().x;
-  }else{
-    isPlayer1 = true;
-    projectilPlayer2.velocity.y = limitaVelocidade().y;
-    projectilPlayer2.velocity.x = limitaVelocidade().x;
-  }
+
+    if(player1selecionado && player2selecionado){
+      clicado = false;
+      contextoTemporario.clearRect(0,0,canvasTemporario.width,canvasTemporario.height);
+      intervaloJogada = setInterval(jogada, frameDelay);
+      if(isPlayer1){
+        isPlayer1 = false;
+        projectilPlayer1.velocity.y = limitaVelocidade().y;
+        projectilPlayer1.velocity.x = limitaVelocidade().x;
+      }else{
+        isPlayer1 = true;
+        projectilPlayer2.velocity.y = limitaVelocidade().y;
+        projectilPlayer2.velocity.x = limitaVelocidade().x;
+      }
+    }
+      acaoclick(mouseclick);
   }
 );

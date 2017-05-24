@@ -2,6 +2,7 @@
 var jogada = function() {
   // define qual o jogador que está sendo manipulado agora. Se for o primeiro frame da jogada
   // grava as posições iniciais para resetar após a jogada ser finalizada
+
 var projectil;
 var player;
   if(!isPlayer1 && numeroJogada === 0){
@@ -49,8 +50,8 @@ var player;
         projectil.velocity.y += ay*frameRate;
 
             // Integrate to get position
-        projectil.position.x += projectil.velocity.x;
-        projectil.position.y += projectil.velocity.y;
+        projectil.position.x += projectil.velocity.x/5;
+        projectil.position.y += projectil.velocity.y/5;
 
 
     contextoTemporario.beginPath();
@@ -59,7 +60,7 @@ var player;
 
     // Rotaciona projetil em "projectilAngleº", desenhando ele nas posições x,y e por ultimo, as coordenadas do eixo de rotação
     rotacionaProjetil ( contextoTemporario, projectil.image, projectilAngle*(Math.PI/180), projectil.position.x, projectil.position.y, 15, 12 );
-    projectilAngle += 25;
+    projectilAngle += 1.5;
 
     analisaImpactoPlayer(projectil, player);
     analisaImpactoPredio(projectil);
@@ -126,22 +127,29 @@ function analisaImpactoPlayer(projetil, player){
 
 function analisaImpactoPredio(projetil){
   for(var i = 0; i< predios.length; i++){
-    if(projetil.position.x > predios[i].XInicial && projetil.position.x < predios[i].XFinal){
+    if(projetil.position.x > predios[i].XInicial && projetil.position.x < predios[i].XFinal){ //testa se está na área de um predio
       if(projetil.position.y > predios[i].YInicial && projetil.position.y < predios[i].YFinal){
+        for(var k = 0 ; k<damages.length;k++){ // varre o vetor de damages a fim de se certificar que o projetil está dentro de uma área já destruida
+          if(projetil.position.x > damages[k].xin && projetil.position.x < damages[k].xfinal){
+            if(projetil.position.y > damages[k].yin && projetil.position.y <  damages[k].yfinal){
+                return 0; //se o projetil está em área já destruida, o projetil segue a trajetória.
+            }
+          }
+        }
         swal({
       title: "Right in the building, loser!",
       timer: 1000,
       showConfirmButton: true,
       type: "error",
     }).then(
-  function () {},
-  // handling the promise rejection
-  function (dismiss) {
-    if (dismiss === 'timer') {
-      console.log('I was closed by the timer')
-    }
-  }
-);
+              function () {},
+              // handling the promise rejection
+              function (dismiss) {
+                if (dismiss === 'timer') {
+                }
+              }
+            );
+          createDamage(projetil,context);
           encerraJogada(projetil);
       }
     }
@@ -155,4 +163,17 @@ function encerraJogada(projetil){
   contextoTemporario.clearRect(0,0,canvasTemporario.width,canvasTemporario.height); //impede que o projetil fique congelado onde o impacto acontece
   console.log("Player " + num);
 window.clearInterval(intervaloJogada);
+}
+
+function createDamage(projetil,context){
+
+  context.clearRect(projetil.position.x-20,projetil.position.y-20,40,40);
+  var damage = new Object();
+  damage.xin= projetil.position.x-20;
+  damage.yin= projetil.position.y-20;
+  damage.xfinal = projetil.position.x+20;
+  damage.yfinal = projetil.position.y+20;
+  damages.push(damage);
+
+
 }

@@ -1,3 +1,13 @@
+/* imagens para seleção de personagem*/
+var opcaoPlayer1;
+var opcaoPlayer2;
+var opcoes = []; // vetor que armazena todas as imagens das opcoes de jogadores
+var politicians =["obama","elizabeth","trump","justin","putin","lula","dilma","kim"];
+
+var player1selecionado = false;
+var player2selecionado = false;
+
+
 /*
 Construct.js dependences
 */
@@ -17,13 +27,12 @@ var mouseclick;
 var clicado = false;
 var playercriado =false;
 var isPlayer1 = true;
-var image = new Image();
-
 var hipotenusa;
+
 /*
-projectil.js dependences
+jogada.js dependences
 */
-var frameRate = 1/80; // Seconds
+var frameRate = 1/500; // Seconds
 var frameDelay = frameRate * 2500; // ms
 var numeroJogada = 0;
 var projectilPosIniX;
@@ -46,7 +55,7 @@ var projectilPlayer1 = {
 
 var projectilPlayer2 = {
   position: {x: 0, y: 0},
-  velocity: {x: 10, y: 0},
+  velocity: {x: 0.1, y: 0},
   mass: 0.1, //kg
   radius: 15, // 1px = 1cm
   restitution: -0.7,
@@ -57,19 +66,14 @@ var projectilPlayer2 = {
   image: new Image()
 };
 
-
-
-
-
-/*
-player.js dependences
-*/
 var player1 = {
   tamanho : { },
   posicao : { }
-}
+};
 
 var player2 = {
   tamanho : { },
   posicao : { }
-}
+};
+
+var damages = []; // salva todos os danos, de todos os prédios

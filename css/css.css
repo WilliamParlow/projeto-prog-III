@@ -13,9 +13,18 @@ body, html{
   height: auto;
 }*/
  #canvasGame{
-    background:url(../img/img1.jpg);
+    background:url(../img/bandeira2.jpg);
     background-size: cover;
     z-index: -1;
     position: absolute;
 
   }
+.warning{
+  margin-left: 20%;
+  padding-left: 10%;
+  padding-right: 10%;
+  color: #4F8A10;
+  background-color: #DFF2BF;
+
+  position: absolute;
+}

@@ -1,5 +1,6 @@
 // cria o senário
 function buildscenario(context){
+  contextoTemporario.clearRect(0,0,1000,600); // apaga a tela de seleção de personagens
   var largTotal = 0; // recebe a largura total já desenhada no cavas, serve de referencia para saber onde deve ser desenhando o proximo prédio
   while(largTotal < canvas.width){
     var altura = Math.floor(Math.random()*300) +200; //altura e largura randomicos
@@ -27,7 +28,7 @@ function createBuilding(altura, largura, larguraTotal){
     YFinal:0
   };
   // Cria o bloco do prédio
-  context.fillStyle="#555";
+  context.fillStyle="#002040";
   context.fillRect(larguraTotal,altura,largura,canvas.height - altura);
   predio.XFinal = largura + larguraTotal;
   predio.XInicial = larguraTotal;
@@ -37,13 +38,24 @@ function createBuilding(altura, largura, larguraTotal){
   predios[indicePredios] = predio;
   indicePredios++;
   // Cria as janelas do prédio.
-  var qtdJanelaLinha = largura/15;
-  var qtdJanelaColuna = (canvas.height-altura)/25;
+  var qtdJanelaLinha = largura;
+  var qtdJanelaColuna = (canvas.height-altura)/7;
   for(var i = 1 ; i<(qtdJanelaLinha); i++){
     for(var j = 1; j < (qtdJanelaColuna); j++){
-      if((i*25)<(largura -20)){ // serve para não haver colunas de janelas depois que o prédio terminou
-        context.fillStyle="#CC0";
-        context.fillRect(larguraTotal+(i*25),altura + (j*25),10,20);
+      if((i*20)<(largura -20)){ // serve para não haver colunas de janelas depois que o prédio terminou
+        var color = Math.round(Math.random()+1);
+        console.log(color);
+        switch (color){
+          case 1:
+          context.fillStyle="#A96733";
+          context.fillRect(larguraTotal+(i*20),altura + (j*15),14,7);
+          break;
+          case 2:
+          context.fillStyle="#065F7F";
+          context.fillRect(larguraTotal+(i*20),altura + (j*15),14,7);
+          break;
+        }
+
       }
     }
   }
@@ -110,10 +122,10 @@ function criaPlayer(numPlayer, canvas,altura, largura){
   switch (numPlayer){
     case 1:
     var player = new Image();
-    player.src = 'img/obama.png';
+    player.src = opcoes[opcaoPlayer1-1].ingame.src;
     player.onload = function(){
       canvas.drawImage(player, 20, altura-104); // tamanho em px do icone do player
-      projectilPlayer1.image.src = "img/mexicano.png";
+      projectilPlayer1.image.src = opcoes[opcaoPlayer1-1].projetil.src;
       player1.posicao.x = 20;
       player1.posicao.y = altura-104;
       player1.tamanho.width = player.width;
@@ -124,10 +136,10 @@ function criaPlayer(numPlayer, canvas,altura, largura){
     break;
     case 2:
     var player = new Image();
-    player.src = 'img/trump.png';
+    player.src = opcoes[opcaoPlayer2-1].ingame.src;
     player.onload = function(){
-      canvas.drawImage(player, largura, altura-97); // tamanho em px do icone do player
-      projectilPlayer2.image.src = "img/tijolo.png";
+      canvas.drawImage(player, largura, altura-104); // tamanho em px do icone do player
+      projectilPlayer2.image.src = opcoes[opcaoPlayer2-1].projetil.src;
       player2.posicao.x = largura;
       player2.posicao.y = altura-97;
       player2.tamanho.width = player.width;
@@ -139,4 +151,58 @@ function criaPlayer(numPlayer, canvas,altura, largura){
     break;
   }
 
+}
+
+function acaoclick(coordenadas){
+
+if(player1selecionado && !player2selecionado){
+       opcaoPlayer2= seleciona_opcao(coordenadas);
+       player2selecionado = true;
+       buildscenario(context);
+   }
+if(!player1selecionado && !player2selecionado){
+  opcaoPlayer1 = seleciona_opcao(coordenadas);
+  player1selecionado = true;
+}
+}
+
+
+function seleciona_opcao(coordenadas){
+  var opcaoselecionada;
+   // se não foi selecionado nenhum player ainda é feita a seleção de acordo com as coordenadas do click
+    if(coordenadas.x<250 && coordenadas.y<300){
+      opcaoselecionada = 1;
+    }else if (coordenadas.x<500 && coordenadas.y<300) {
+      opcaoselecionada = 2;
+    }else if (coordenadas.x<750 && coordenadas.y<300) {
+      opcaoselecionada = 3;
+    }else if (coordenadas.x<1000 && coordenadas.y<300) {
+      opcaoselecionada = 4;
+    }else if (coordenadas.x<250 && coordenadas.y<600) {
+      opcaoselecionada = 5;
+    }else if (coordenadas.x<500 && coordenadas.y<600) {
+      opcaoselecionada = 6;
+    }else if (coordenadas.x<750 && coordenadas.y<600) {
+      opcaoselecionada = 7;
+    }else if (coordenadas.x<1000 && coordenadas.y<600) {
+      opcaoselecionada = 8;
+    }
+    console.log(opcaoselecionada);
+    return opcaoselecionada;
+
+}
+
+function constroiObjetosImages(){
+
+      for(var i=0;i<politicians.length;i++){
+        var opcao = new Object();
+        opcao.select = new Image();
+        opcao.projetil = new Image();
+        opcao.ingame = new Image();
+        opcao.select.src = "img/select_"+politicians[i]+".jpg";
+        opcao.projetil.src = "img/projetil_"+politicians[i]+".png";
+        opcao.ingame.src = "img/ingame_"+politicians[i]+".png";
+        opcoes.push(opcao);
+
+  }
 }
