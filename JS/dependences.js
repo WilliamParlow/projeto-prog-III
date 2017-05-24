@@ -32,7 +32,7 @@ var hipotenusa;
 /*
 jogada.js dependences
 */
-var frameRate = 1/80; // Seconds
+var frameRate = 1/500; // Seconds
 var frameDelay = frameRate * 2500; // ms
 var numeroJogada = 0;
 var projectilPosIniX;
@@ -55,7 +55,7 @@ var projectilPlayer1 = {
 
 var projectilPlayer2 = {
   position: {x: 0, y: 0},
-  velocity: {x: 10, y: 0},
+  velocity: {x: 0.1, y: 0},
   mass: 0.1, //kg
   radius: 15, // 1px = 1cm
   restitution: -0.7,

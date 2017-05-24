@@ -50,8 +50,8 @@ var player;
         projectil.velocity.y += ay*frameRate;
 
             // Integrate to get position
-        projectil.position.x += projectil.velocity.x;
-        projectil.position.y += projectil.velocity.y;
+        projectil.position.x += projectil.velocity.x/5;
+        projectil.position.y += projectil.velocity.y/5;
 
 
     contextoTemporario.beginPath();
@@ -60,7 +60,7 @@ var player;
 
     // Rotaciona projetil em "projectilAngleº", desenhando ele nas posições x,y e por ultimo, as coordenadas do eixo de rotação
     rotacionaProjetil ( contextoTemporario, projectil.image, projectilAngle*(Math.PI/180), projectil.position.x, projectil.position.y, 15, 12 );
-    projectilAngle += 25;
+    projectilAngle += 1.5;
 
     analisaImpactoPlayer(projectil, player);
     analisaImpactoPredio(projectil);

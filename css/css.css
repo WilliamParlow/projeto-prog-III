@@ -19,3 +19,12 @@ body, html{
     position: absolute;
 
   }
+.warning{
+  margin-left: 20%;
+  padding-left: 10%;
+  padding-right: 10%;
+  color: #4F8A10;
+  background-color: #DFF2BF;
+
+  position: absolute;
+}
