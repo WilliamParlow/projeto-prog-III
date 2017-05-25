@@ -44,7 +44,6 @@ function createBuilding(altura, largura, larguraTotal){
     for(var j = 1; j < (qtdJanelaColuna); j++){
       if((i*20)<(largura -20)){ // serve para não haver colunas de janelas depois que o prédio terminou
         var color = Math.round(Math.random()+1);
-        console.log(color);
         switch (color){
           case 1:
           context.fillStyle="#A96733";
@@ -73,7 +72,7 @@ function canvas_arrow(context, fromx, fromy, tox, toy){
   context.lineTo(tox-headlen*Math.cos(angle-Math.PI/6),toy-headlen*Math.sin(angle-Math.PI/6));
   context.moveTo(tox, toy);
   context.lineTo(tox-headlen*Math.cos(angle+Math.PI/6),toy-headlen*Math.sin(angle+Math.PI/6));
-  context.strokeStyle = '#000';
+  context.strokeStyle = '#FFF';
   context.lineWidth = 3;
   context.stroke();
 
@@ -90,12 +89,15 @@ function canvas_text(context,click,posicao){
   }
   var text = "Potência: ";
   text = text.concat(num);
-  context.strokeText(text,click.x+20,click.y-20);
+  context.fillStyle = "#FFF";
+  context.font = "20px 'Press Start 2P'";;
+  context.fillText(text,click.x+20,click.y-20);
   text = "";
   text = text.concat("Ângulo: ");
   text = text.concat(  calculaAngulo(click,posicao).x.toString());
-  context.font = "30px Calibri";
-  context.strokeText(text,click.x+20,click.y-50);
+
+
+  context.fillText(text,click.x+20,click.y-50);
 
 }
 
@@ -158,11 +160,13 @@ function acaoclick(coordenadas){
 if(player1selecionado && !player2selecionado){
        opcaoPlayer2= seleciona_opcao(coordenadas);
        player2selecionado = true;
+
        buildscenario(context);
    }
 if(!player1selecionado && !player2selecionado){
   opcaoPlayer1 = seleciona_opcao(coordenadas);
   player1selecionado = true;
+  criaMenuSelect(contextoTemporario);
 }
 }
 
@@ -170,25 +174,27 @@ if(!player1selecionado && !player2selecionado){
 function seleciona_opcao(coordenadas){
   var opcaoselecionada;
    // se não foi selecionado nenhum player ainda é feita a seleção de acordo com as coordenadas do click
-    if(coordenadas.x<250 && coordenadas.y<300){
+    if(coordenadas.x>130 && coordenadas.x<280 && coordenadas.y>177 && coordenadas.y<330){
       opcaoselecionada = 1;
-    }else if (coordenadas.x<500 && coordenadas.y<300) {
+    }else if (coordenadas.x>330 && coordenadas.x<480 && coordenadas.y>177 && coordenadas.y<330) {
       opcaoselecionada = 2;
-    }else if (coordenadas.x<750 && coordenadas.y<300) {
+    }else if (coordenadas.x>530 && coordenadas.x<680 && coordenadas.y>177 && coordenadas.y<330) {
       opcaoselecionada = 3;
-    }else if (coordenadas.x<1000 && coordenadas.y<300) {
+    }else if (coordenadas.x>730 && coordenadas.x<880 && coordenadas.y>177 && coordenadas.y<330) {
       opcaoselecionada = 4;
-    }else if (coordenadas.x<250 && coordenadas.y<600) {
+    }else if(coordenadas.x>130 && coordenadas.x<280 && coordenadas.y>360 && coordenadas.y<510){
       opcaoselecionada = 5;
-    }else if (coordenadas.x<500 && coordenadas.y<600) {
+    }else if (coordenadas.x>330 && coordenadas.x<480 && coordenadas.y>360 && coordenadas.y<510) {
       opcaoselecionada = 6;
-    }else if (coordenadas.x<750 && coordenadas.y<600) {
+    }else if (coordenadas.x>530 && coordenadas.x<680 && coordenadas.y>360 && coordenadas.y<510) {
       opcaoselecionada = 7;
-    }else if (coordenadas.x<1000 && coordenadas.y<600) {
+    }else if (coordenadas.x>730 && coordenadas.x<880 && coordenadas.y>360 && coordenadas.y<510) {
       opcaoselecionada = 8;
     }
     console.log(opcaoselecionada);
+    criaMenuSelect(contextoTemporario);
     return opcaoselecionada;
+
 
 }
 
@@ -199,7 +205,7 @@ function constroiObjetosImages(){
         opcao.select = new Image();
         opcao.projetil = new Image();
         opcao.ingame = new Image();
-        opcao.select.src = "img/select_"+politicians[i]+".jpg";
+        opcao.select.src = "img/select_"+politicians[i]+".png";
         opcao.projetil.src = "img/projetil_"+politicians[i]+".png";
         opcao.ingame.src = "img/ingame_"+politicians[i]+".png";
         opcoes.push(opcao);

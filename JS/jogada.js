@@ -67,12 +67,7 @@ var player;
 
 // identifica se o projetil saiu da tela para resetar tudo, possibilitando nova jogada
     if(projectil.position.x > 1000 || projectil.position.y > 600 || projectil.position.x < 0 ){
-      swal({
-        title: "Pra fooooooraaaaa!!!",
-        timer: 1000,
-        showConfirmButton: true,
-        type: "error"
-      });
+      console.log("projetil pra fora");
       encerraJogada(projectil);
     }
 
@@ -114,12 +109,7 @@ if(y<(limite-(2*limite))){
 function analisaImpactoPlayer(projetil, player){
   if(projetil.position.x > player.posicao.x && projetil.position.x <(player.posicao.x +player.tamanho.width)){
     if(projetil.position.y > player.posicao.y && projetil.position.y <(player.posicao.y +player.tamanho.height)){
-      swal({
-    title: "Você acertou, motherfucker!",
-    timer: 2000,
-    showConfirmButton: true,
-    type: "success"
-  });
+      console.log("Acertou o ardversário");
       encerraJogada(projetil);
     }
   }
@@ -136,19 +126,7 @@ function analisaImpactoPredio(projetil){
             }
           }
         }
-        swal({
-      title: "Right in the building, loser!",
-      timer: 1000,
-      showConfirmButton: true,
-      type: "error",
-    }).then(
-              function () {},
-              // handling the promise rejection
-              function (dismiss) {
-                if (dismiss === 'timer') {
-                }
-              }
-            );
+        console.log("Acertou o prédio");
           createDamage(projetil,context);
           encerraJogada(projetil);
       }
