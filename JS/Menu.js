@@ -13,12 +13,12 @@ function criaMenuSelect(){
   contextoTemporario.font = "50px 'Press Start 2P'";
   if(player1selecionado && !player2selecionado)
   {
-    contextoTemporario.fillText("Selecione o Player 2:",110,170,800);
+    contextoTemporario.fillText("Select Player 2:",110,170,800);
   }
 
   if(!player1selecionado)
   {
-    contextoTemporario.fillText("Selecione o Player 1:",110,170,800);
+    contextoTemporario.fillText("Select Player 1:",110,170,800);
   }
   for(var i =0;i<opcoes.length;i++){
     if(i>3){

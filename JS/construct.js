@@ -87,13 +87,13 @@ function canvas_text(context,click,posicao){
   if(num>100){
     num = 100;
   }
-  var text = "Potência: ";
+  var text = "Power: ";
   text = text.concat(num);
   context.fillStyle = "#FFF";
   context.font = "20px 'Press Start 2P'";;
   context.fillText(text,click.x+20,click.y-20);
   text = "";
-  text = text.concat("Ângulo: ");
+  text = text.concat("Degrees: ");
   text = text.concat(  calculaAngulo(click,posicao).x.toString());
 
 

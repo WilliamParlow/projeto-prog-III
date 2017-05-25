@@ -16,6 +16,6 @@ function telaCarregamento(){
   contextoTemporario.font = "50px 'Press Start 2P'";
   contextoTemporario.fillText("Undefined",300,100);
   contextoTemporario.fillText("Best game Ever!",150,200);
-  contextoTemporario.fillText("Carregando... ",300,500);
+  contextoTemporario.fillText("Loading... ",300,500);
 
 }
