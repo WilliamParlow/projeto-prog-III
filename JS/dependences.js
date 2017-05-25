@@ -1,5 +1,6 @@
 /* menu*/
 var loadingScreen;
+var restart = false;
 
 /* Playr life references */
 
@@ -85,13 +86,17 @@ var projectilPlayer2 = {
 };
 
 var player1 = {
+  name: 'Player 1',
   tamanho : { },
-  posicao : { }
+  posicao : { },
+  vida:3
 };
 
 var player2 = {
+  name: 'Player 1',
   tamanho : { },
-  posicao : { }
+  posicao : { },
+  vida:3
 };
 
 var damages = []; // salva todos os danos, de todos os prédios

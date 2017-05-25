@@ -113,6 +113,7 @@ function analisaImpactoPlayer(projetil, player){
   if(projetil.position.x > player.posicao.x && projetil.position.x <(player.posicao.x +player.tamanho.width)){
     if(projetil.position.y > player.posicao.y && projetil.position.y <(player.posicao.y +player.tamanho.height)){
       console.log("Acertou o ardversário");
+<<<<<<< HEAD
 
       if (isPlayer1) {
         console.log(player1Life);
@@ -124,6 +125,12 @@ function analisaImpactoPlayer(projetil, player){
         player2Life.index++;
       }
 
+=======
+      player.vida -=1;
+      if(player.vida === 0){
+        winner(player);
+      }
+>>>>>>> master
       encerraJogada(projetil);
     }
   }
@@ -173,6 +180,22 @@ function createDamage(projetil,context){
   damage.xfinal = projetil.position.x+20;
   damage.yfinal = projetil.position.y+20;
   damages.push(damage);
+}
 
-
+function winner(player_loser){
+  context.clearRect(0,0,1000,600);
+  contextoTemporario.clearRect(0,0,1000,600);
+  criaMenuEsboco(context);
+  var textloser = player_loser.name +" was destroyed!";
+  var winner;
+  if(player_loser.name ==="Player 1") winner = "Player 2";
+  else winner = "Player 1";
+  var textWinner = winner +", you rock!";
+  context.fillStyle = "#FFF";
+  context.font = "40px 'Press Start 2P'";
+  context.fillText(textWinner,110,150);
+  context.font = "20px'Press Start 2P'";
+  context.fillText(textloser,270,300);
+  context.fillText("Try harder next time.",290,350);
+  restart();
 }

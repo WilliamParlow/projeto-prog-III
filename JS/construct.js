@@ -176,6 +176,16 @@ if(!player1selecionado && !player2selecionado){
   player1selecionado = true;
   criaMenuSelect(contextoTemporario);
 }
+
+if(restart){
+  if(coordenadas.x>360 && coordenadas.x<640 && coordenadas.y>390&& coordenadas.y<470)
+  {
+    context.clearRect(0,0,1000,600);
+    contextoTemporario.clearRect(0,0,1000,600);
+    menuRestart();
+  }
+}
+
 }
 
 
