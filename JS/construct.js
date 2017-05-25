@@ -16,6 +16,7 @@ function buildscenario(context){
 
   }
 
+  $("#warn-container").removeClass('hide');
 
 }
 
