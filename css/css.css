@@ -49,16 +49,14 @@ height: auto;
 
 }
 
-.warning > .player-UI:first-child {
-  border-right: 2px solid #FFF;
-}
-
 .player-UI {
   padding: 0 10px;
+  margin: 0 6px;
   width: 50%;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  border-radius: 10px;
 }
 
 .player-img {
@@ -119,4 +117,10 @@ height: auto;
 
 .lifeLost::after {
   border-top-color: #DDD !important;
+}
+
+.player-active {
+  border-right: 2px solid #FFF !important;
+  border-left: 2px solid #FFF !important;
+  background-color: #264b75 !important;
 }

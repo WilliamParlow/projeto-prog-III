@@ -3,18 +3,18 @@ var loadingScreen;
 
 /* Playr life references */
 
-player1Life = {
+var player1Life = {
   diamonds: $('.player1-life'),
   index: 2
 }
 
-player2Life = {
+var player2Life = {
   diamonds: $('.player2-life'),
   index: 0
 }
 
-
-
+/* Player UI reference */
+var playersUI = $(".player-UI");
 
 
 /* imagens para seleção de personagem*/

@@ -30,7 +30,10 @@ if(isPlayer1 && numeroJogada === 0){
   projectil = projectilPlayer2;
   player = player1;
 }
-}
+
+	
+  }
+
 
 // parte da física do game
 
@@ -152,6 +155,13 @@ function encerraJogada(projetil){
   contextoTemporario.clearRect(0,0,canvasTemporario.width,canvasTemporario.height); //impede que o projetil fique congelado onde o impacto acontece
   console.log("Player " + num);
   window.clearInterval(intervaloJogada);
+  if (isPlayer1) {
+	  $(playersUI[0]).addClass('player-active')
+	  $(playersUI[1]).removeClass('player-active');
+	} else {
+	  $(playersUI[1]).addClass('player-active');
+	  $(playersUI[0]).removeClass('player-active');
+	}
 }
 
 function createDamage(projetil,context){

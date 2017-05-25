@@ -17,6 +17,13 @@ function buildscenario(context){
   }
 
   $("#warn-container").removeClass('hide');
+  if (isPlayer1) {
+	  $(playersUI[0]).addClass('player-active')
+	  $(playersUI[1]).removeClass('player-active');
+	} else {
+	  $(playersUI[1]).addClass('player-active');
+	  $(playersUI[0]).removeClass('player-active');
+	}
 
 }
 
