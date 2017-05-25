@@ -113,7 +113,7 @@ function analisaImpactoPlayer(projetil, player){
   if(projetil.position.x > player.posicao.x && projetil.position.x <(player.posicao.x +player.tamanho.width)){
     if(projetil.position.y > player.posicao.y && projetil.position.y <(player.posicao.y +player.tamanho.height)){
       console.log("Acertou o ardversário");
-<<<<<<< HEAD
+
 
       if (isPlayer1) {
         console.log(player1Life);
@@ -125,12 +125,12 @@ function analisaImpactoPlayer(projetil, player){
         player2Life.index++;
       }
 
-=======
+
       player.vida -=1;
       if(player.vida === 0){
         winner(player);
       }
->>>>>>> master
+
       encerraJogada(projetil);
     }
   }
