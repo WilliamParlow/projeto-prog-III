@@ -17,14 +17,89 @@ body, html{
     background-size: cover;
     z-index: -1;
     position: absolute;
-
-  }
+}
+.warning, .warning-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+  
+.warning-container {
+	width: 1000px;
+	height: 60px;
+	flex-direction: column;
+	position: absolute;
+}
+  
 .warning{
-  margin-left: 20%;
-  padding-left: 10%;
-  padding-right: 10%;
-  color: #4F8A10;
-  background-color: #DFF2BF;
+  height: 100%;
+  width: 80%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: #FFF;
+  background-color: #000341;
+  position: relative;
+  border: 6px solid #002146;
+  border-top-color: transparent;
+  
+}
 
-  position: absolute;
+.warning > .player-UI:first-child {
+  border-right: 2px solid #FFF;
+}
+
+.player-UI {
+  padding: 0 10px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.player-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 10000px;
+  background-color: #FFF;
+}
+
+#player1-image {
+  background-image: url("../img/icons/lula.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#player2-image {
+  background-image: url("../img/icons/trump.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.diamond {  
+   width: 50px;
+   height: 0;
+   position: relative;
+}
+
+.diamond::after, .diamond::before {
+	content: '';
+	position: absolute;
+	width: 35px;
+	height: 0;
+}
+
+.diamond::before {
+	top: -15px;
+	border-bottom: solid 5px #2196f3;
+	border-left: solid 10px transparent;
+	border-right: solid 10px transparent;
+}
+
+.diamond::after {
+	width: 0;
+	top: -10px;
+	border-top: solid 25px #2196f3;
+	border-left: solid 17px transparent;
+	border-right: solid 17px transparent;
 }
