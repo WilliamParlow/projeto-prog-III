@@ -4,6 +4,10 @@ body, html{
   padding: 0;
   width: 100%;
   height: auto;
+  font-family: 'Press Start 2P', cursive;
+}
+canvas{
+    position: relative;
 }
 /*#container{
   display: flex;
@@ -17,6 +21,7 @@ body, html{
     background-size: cover;
     z-index: -1;
     position: absolute;
+<<<<<<< HEAD
 }
 .warning, .warning-container {
 	display: flex;
@@ -103,3 +108,6 @@ body, html{
 	border-left: solid 17px transparent;
 	border-right: solid 17px transparent;
 }
+=======
+  }
+>>>>>>> master
