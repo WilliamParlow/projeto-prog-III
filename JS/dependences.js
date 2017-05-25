@@ -1,5 +1,6 @@
 /* menu*/
 var loadingScreen;
+var restart = false;
 
 /* imagens para seleção de personagem*/
 var opcaoPlayer1;
@@ -69,13 +70,17 @@ var projectilPlayer2 = {
 };
 
 var player1 = {
+  name: 'Player 1',
   tamanho : { },
-  posicao : { }
+  posicao : { },
+  vida:3
 };
 
 var player2 = {
+  name: 'Player 1',
   tamanho : { },
-  posicao : { }
+  posicao : { },
+  vida:3
 };
 
 var damages = []; // salva todos os danos, de todos os prédios
