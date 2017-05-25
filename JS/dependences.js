@@ -1,9 +1,11 @@
+/* menu*/
+var loadingScreen;
+
 /* imagens para seleção de personagem*/
 var opcaoPlayer1;
 var opcaoPlayer2;
 var opcoes = []; // vetor que armazena todas as imagens das opcoes de jogadores
 var politicians =["obama","elizabeth","trump","justin","putin","lula","dilma","kim"];
-
 var player1selecionado = false;
 var player2selecionado = false;
 

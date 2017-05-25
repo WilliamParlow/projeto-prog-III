@@ -4,6 +4,10 @@ body, html{
   padding: 0;
   width: 100%;
   height: auto;
+  font-family: 'Press Start 2P', cursive;
+}
+canvas{
+    position: relative;
 }
 /*#container{
   display: flex;
@@ -17,14 +21,4 @@ body, html{
     background-size: cover;
     z-index: -1;
     position: absolute;
-
   }
-.warning{
-  margin-left: 20%;
-  padding-left: 10%;
-  padding-right: 10%;
-  color: #4F8A10;
-  background-color: #DFF2BF;
-
-  position: absolute;
-}
