@@ -82,3 +82,23 @@ function music(){
   music.volume-=0.9;
 
 }
+
+function telaCarregamento(){
+  contextoTemporario.fillStyle = "#FFF";
+  contextoTemporario.font = "50px 'Press Start 2P'";
+  contextoTemporario.fillText("Undefined",300,100);
+  contextoTemporario.fillText("Best game Ever!",150,200);
+  contextoTemporario.fillText("Loading... ",300,500);
+}
+
+function restart(){
+  context.fillStyle = "#002146";
+  roundRect(context,350,380,300,100,20,true,false);
+  context.fillStyle = "#124266";
+  roundRect(context,360,390,280,80,20,true,false);
+  context.fillStyle = "#FFF";
+  context.font = "35px 'Press Start 2P'";
+  context.fillText("Restart",375,445);
+
+
+}

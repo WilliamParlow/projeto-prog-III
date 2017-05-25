@@ -44,5 +44,6 @@ $('#canvasTemporario').mouseup(function(e){
       }
     }
       acaoclick(mouseclick);
+
   }
 );

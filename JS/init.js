@@ -1,21 +1,11 @@
 // Init function
 constroiObjetosImages();
-opcoes[7].select.onload = function(){
+opcoes[7].select.onload = menuRestart;
 
+function menuRestart(){
+    music(); // carrega e da play na musica de fundo do game
+    telaCarregamento(); // Mostra a tela inicial durante 5 segundos com uma mensagem de loading que na verdade não acontece
+    loadingScreen=setInterval(criaMenuSelect,5000); // espera 5 segundos e executa a função criaMenuSelect que é o menu de seleção de personagens
 
-
-    music();
-    telaCarregamento();
-    loadingScreen=setInterval(criaMenuSelect,5000);
-
-
-}
-
-function telaCarregamento(){
-  contextoTemporario.fillStyle = "#FFF";
-  contextoTemporario.font = "50px 'Press Start 2P'";
-  contextoTemporario.fillText("Undefined",300,100);
-  contextoTemporario.fillText("Best game Ever!",150,200);
-  contextoTemporario.fillText("Loading... ",300,500);
 
 }
