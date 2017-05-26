@@ -111,6 +111,7 @@ function analisaImpactoPlayer(projetil, player){
     if(projetil.position.y > player.posicao.y && projetil.position.y <(player.posicao.y +player.tamanho.height)){
       console.log("Acertou o ardversário");
       player.vida -=1;
+      console.log(player);
       if(player.vida === 0){
         winner(player);
       }
@@ -164,8 +165,12 @@ function winner(player_loser){
   criaMenuEsboco(context);
   var textloser = player_loser.name +" was destroyed!";
   var winner;
-  if(player_loser.name ==="Player 1") winner = "Player 2";
-  else winner = "Player 1";
+  if(player_loser.name ==="Player 1"){
+    winner = "Player 2";
+  }
+  else{
+    winner = "Player 1";
+  }
   var textWinner = winner +", you rock!";
   context.fillStyle = "#FFF";
   context.font = "40px 'Press Start 2P'";

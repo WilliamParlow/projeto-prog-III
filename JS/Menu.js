@@ -80,6 +80,13 @@ function music(){
   music.crossOrigin = "8-bit Universe Youtube Channel"; // canal do youtube autor da musica
   music.play();
   music.volume-=0.9;
+  // https://www.youtube.com/watch?v=zZbmhTe4ClY
+  // https://www.youtube.com/watch?v=wWmbs0MYKNc
+  // https://www.youtube.com/watch?v=eUVMQmO933U
+  // https://www.youtube.com/watch?v=Ak5GYF1Cnek
+  // https://www.youtube.com/watch?v=EE6Iws3Tagk
+  // https://www.youtube.com/watch?v=22Y2z6TzyVc
+  // https://www.youtube.com/watch?v=brDbHtkZ2qI
 
 }
 
