@@ -93,7 +93,7 @@ var player1 = {
 };
 
 var player2 = {
-  name: 'Player 1',
+  name: 'Player 2',
   tamanho : { },
   posicao : { },
   vida:3

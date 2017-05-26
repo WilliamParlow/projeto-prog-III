@@ -92,6 +92,7 @@ function telaCarregamento(){
 }
 
 function restart(){
+  $("#warn-container").addClass('hide');
   context.fillStyle = "#002146";
   roundRect(context,350,380,300,100,20,true,false);
   context.fillStyle = "#124266";
