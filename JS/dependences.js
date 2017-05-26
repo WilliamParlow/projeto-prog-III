@@ -2,6 +2,22 @@
 var loadingScreen;
 var restart = false;
 
+/* Playr life references */
+
+var player1Life = {
+  diamonds: $('.player1-life'),
+  index: 2
+}
+
+var player2Life = {
+  diamonds: $('.player2-life'),
+  index: 0
+}
+
+/* Player UI reference */
+var playersUI = $(".player-UI");
+
+
 /* imagens para seleção de personagem*/
 var opcaoPlayer1;
 var opcaoPlayer2;
@@ -19,7 +35,7 @@ Construct.js dependences
 var predios = new Array();
 var indicePredios = 0;
 /*
-  Main.js dependences
+Main.js dependences
 */
 var canvas  =  document.querySelector("#canvasGame");
 var canvasTemporario = document.querySelector("#canvasTemporario");
