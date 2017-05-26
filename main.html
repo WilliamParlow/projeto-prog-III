@@ -21,23 +21,46 @@
 </head>
 <body>
 
-    <canvas id="canvasGame" width="1000px" height="600px"></canvas>
-    <canvas id="canvasTemporario" width="1000px" height="600px"></canvas>
+  <div class="container-fluid" id="container">
+    <div id="warn-container" class="warning-container hide">
+      <div class = "warning">
+        <div class="player-UI" id="player-UI1">
+          <div class="player-img" id="player1-image"></div>
+          <div></div><div></div><div></div>
+          <div class="diamond player1-life"></div>
+          <div class="diamond player1-life"></div>
+          <div class="diamond player1-life"></div>
+          <div></div><div></div><div></div>
+        </div>
+        <div class="player-UI" id="player-UI2">
+          <div class="player-img" id="player2-image"></div>
+          <div></div><div></div><div></div>
+          <div class="diamond player2-life"></div>
+          <div class="diamond player2-life"></div>
+          <div class="diamond player2-life"></div>
+          <div></div><div></div><div></div>
+        </div>
+      </div>
+    </div>
+    <p id="demo">
+
+      <canvas id="canvasGame" width="1000px" height="600px"></canvas>
+      <canvas id="canvasTemporario" width="1000px" height="600px"></canvas>
 
 
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script src="JS/sweetalert2.min.js"></script>
-  <script src="JS/dependences.js"></script>
-  <script src="JS/construct.js"></script>
-  <script src="JS/jogada.js"></script>
-  <script src="JS/main.js"></script>
-  <script src="JS/Menu.js"></script>
-  <script src="JS/init.js"></script>
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <script src="JS/sweetalert2.min.js"></script>
+      <script src="JS/dependences.js"></script>
+      <script src="JS/construct.js"></script>
+      <script src="JS/jogada.js"></script>
+      <script src="JS/main.js"></script>
+      <script src="JS/Menu.js"></script>
+      <script src="JS/init.js"></script>
 
 
 
-</body>
-</html>
+    </body>
+    </html>

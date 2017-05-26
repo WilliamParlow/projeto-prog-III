@@ -3,8 +3,8 @@ var jogada = function() {
   // define qual o jogador que está sendo manipulado agora. Se for o primeiro frame da jogada
   // grava as posições iniciais para resetar após a jogada ser finalizada
 
-var projectil;
-var player;
+  var projectil;
+  var player;
   if(!isPlayer1 && numeroJogada === 0){
     projectil = projectilPlayer1;
     projectilPosIniX = projectil.position.x;
@@ -13,63 +13,66 @@ var player;
     num =2;
     player = player2;
   }else{if(!isPlayer1 && numeroJogada>0){
-        projectil = projectilPlayer1;
-        player = player2;
+    projectil = projectilPlayer1;
+    player = player2;
   }
+}
+
+if(isPlayer1 && numeroJogada === 0){
+  projectil = projectilPlayer2;
+  projectilPosIniX = projectil.position.x;
+  projectilPosIniY = projectil.position.y;
+  numeroJogada++;
+  num = 1;
+  player = player1;
+
+}else{if(isPlayer1 && numeroJogada>0){
+  projectil = projectilPlayer2;
+  player = player1;
+}
+
+	
   }
 
-    if(isPlayer1 && numeroJogada === 0){
-    projectil = projectilPlayer2;
-    projectilPosIniX = projectil.position.x;
-    projectilPosIniY = projectil.position.y;
-    numeroJogada++;
-    num = 1;
-    player = player1;
-
-  }else{if(isPlayer1 && numeroJogada>0){
-        projectil = projectilPlayer2;
-        player = player1;
-  }
-  }
 
 // parte da física do game
 
-        // Do physics
-        // Drag force: Fd = -1/2 * Cd * A * rho * v * v
-        var Fx = -0.5 * projectil.Cd * projectil.A * projectil.rho * projectil.velocity.x * projectil.velocity.x * projectil.velocity.x / Math.abs(projectil.velocity.x);
-        var Fy = -0.5 * projectil.Cd * projectil.A * projectil.rho * projectil.velocity.y * projectil.velocity.y * projectil.velocity.y / Math.abs(projectil.velocity.y);
+// Do physics
+// Drag force: Fd = -1/2 * Cd * A * rho * v * v
+var Fx = -0.5 * projectil.Cd * projectil.A * projectil.rho * projectil.velocity.x * projectil.velocity.x * projectil.velocity.x / Math.abs(projectil.velocity.x);
+var Fy = -0.5 * projectil.Cd * projectil.A * projectil.rho * projectil.velocity.y * projectil.velocity.y * projectil.velocity.y / Math.abs(projectil.velocity.y);
 
-        Fx = (isNaN(Fx) ? 0 : Fx);
-        Fy = (isNaN(Fy) ? 0 : Fy);
+Fx = (isNaN(Fx) ? 0 : Fx);
+Fy = (isNaN(Fy) ? 0 : Fy);
 
-            // Calculate acceleration ( F = ma )
-        var ax = Fx / projectil.mass;
-        var ay = projectil.ag + (Fy / projectil.mass);
-            // Integrate to get velocity
-        projectil.velocity.x += ax*frameRate;
-        projectil.velocity.y += ay*frameRate;
+// Calculate acceleration ( F = ma )
+var ax = Fx / projectil.mass;
+var ay = projectil.ag + (Fy / projectil.mass);
+// Integrate to get velocity
+projectil.velocity.x += ax*frameRate;
+projectil.velocity.y += ay*frameRate;
 
-            // Integrate to get position
-        projectil.position.x += projectil.velocity.x/5;
-        projectil.position.y += projectil.velocity.y/5;
+// Integrate to get position
+projectil.position.x += projectil.velocity.x/5;
+projectil.position.y += projectil.velocity.y/5;
 
 
-    contextoTemporario.beginPath();
-    contextoTemporario.clearRect(0,0,canvasTemporario.width,canvasTemporario.height);
-    contextoTemporario.closePath();
+contextoTemporario.beginPath();
+contextoTemporario.clearRect(0,0,canvasTemporario.width,canvasTemporario.height);
+contextoTemporario.closePath();
 
-    // Rotaciona projetil em "projectilAngleº", desenhando ele nas posições x,y e por ultimo, as coordenadas do eixo de rotação
-    rotacionaProjetil ( contextoTemporario, projectil.image, projectilAngle*(Math.PI/180), projectil.position.x, projectil.position.y, 15, 12 );
-    projectilAngle += 1.5;
+// Rotaciona projetil em "projectilAngleº", desenhando ele nas posições x,y e por ultimo, as coordenadas do eixo de rotação
+rotacionaProjetil ( contextoTemporario, projectil.image, projectilAngle*(Math.PI/180), projectil.position.x, projectil.position.y, 15, 12 );
+projectilAngle += 1.5;
 
-    analisaImpactoPlayer(projectil, player);
-    analisaImpactoPredio(projectil);
+analisaImpactoPlayer(projectil, player);
+analisaImpactoPredio(projectil);
 
 // identifica se o projetil saiu da tela para resetar tudo, possibilitando nova jogada
-    if(projectil.position.x > 1000 || projectil.position.y > 600 || projectil.position.x < 0 ){
-      console.log("projetil pra fora");
-      encerraJogada(projectil);
-    }
+if(projectil.position.x > 1000 || projectil.position.y > 600 || projectil.position.x < 0 ){
+  console.log("projetil pra fora");
+  encerraJogada(projectil);
+}
 
 
 }
@@ -84,22 +87,22 @@ function rotacionaProjetil ( context, image, angleInRad , positionX, positionY, 
 }
 
 function limitaVelocidade (){
-var x = (mouseclick.x - mousePos.x) / 20;
-var y = (mouseclick.y - mousePos.y)/20;
-var limite = 15;
+  var x = (mouseclick.x - mousePos.x) / 20;
+  var y = (mouseclick.y - mousePos.y)/20;
+  var limite = 15;
 
-if(x> limite){
-  x = limite;
-}
-if(x<(limite-(2*limite))){
-  x = limite-(2*limite);
-}
-if(y> limite){
-  y = limite;
-}
-if(y<(limite-(2*limite))){
-  y= limite-(2*limite);
-}
+  if(x> limite){
+    x = limite;
+  }
+  if(x<(limite-(2*limite))){
+    x = limite-(2*limite);
+  }
+  if(y> limite){
+    y = limite;
+  }
+  if(y<(limite-(2*limite))){
+    y= limite-(2*limite);
+  }
   return{
     x: x,
     y: y
@@ -110,11 +113,25 @@ function analisaImpactoPlayer(projetil, player){
   if(projetil.position.x > player.posicao.x && projetil.position.x <(player.posicao.x +player.tamanho.width)){
     if(projetil.position.y > player.posicao.y && projetil.position.y <(player.posicao.y +player.tamanho.height)){
       console.log("Acertou o ardversário");
+
+
+      if (isPlayer1) {
+        console.log(player1Life);
+        $(player1Life.diamonds[player1Life.index]).addClass('lifeLost');
+        player1Life.index--;
+      } else {
+        console.log(player2Life);
+        $(player2Life.diamonds[player2Life.index]).addClass('lifeLost');
+        player2Life.index++;
+      }
+
+
       player.vida -=1;
       console.log(player);
       if(player.vida === 0){
         winner(player);
       }
+
       encerraJogada(projetil);
     }
   }
@@ -127,13 +144,13 @@ function analisaImpactoPredio(projetil){
         for(var k = 0 ; k<damages.length;k++){ // varre o vetor de damages a fim de se certificar que o projetil está dentro de uma área já destruida
           if(projetil.position.x > damages[k].xin && projetil.position.x < damages[k].xfinal){
             if(projetil.position.y > damages[k].yin && projetil.position.y <  damages[k].yfinal){
-                return 0; //se o projetil está em área já destruida, o projetil segue a trajetória.
+              return 0; //se o projetil está em área já destruida, o projetil segue a trajetória.
             }
           }
         }
         console.log("Acertou o prédio");
-          createDamage(projetil,context);
-          encerraJogada(projetil);
+        createDamage(projetil,context);
+        encerraJogada(projetil);
       }
     }
   }
@@ -145,7 +162,14 @@ function encerraJogada(projetil){
   numeroJogada=0;
   contextoTemporario.clearRect(0,0,canvasTemporario.width,canvasTemporario.height); //impede que o projetil fique congelado onde o impacto acontece
   console.log("Player " + num);
-window.clearInterval(intervaloJogada);
+  window.clearInterval(intervaloJogada);
+  if (isPlayer1) {
+	  $(playersUI[0]).addClass('player-active')
+	  $(playersUI[1]).removeClass('player-active');
+	} else {
+	  $(playersUI[1]).addClass('player-active');
+	  $(playersUI[0]).removeClass('player-active');
+	}
 }
 
 function createDamage(projetil,context){

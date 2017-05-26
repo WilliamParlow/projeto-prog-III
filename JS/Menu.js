@@ -28,11 +28,11 @@ function criaMenuSelect(){
     }
 
   }
-window.clearInterval(loadingScreen);
+  window.clearInterval(loadingScreen);
 
-if(player1selecionado && player2selecionado){
-   buildscenario(context);
-}
+  if(player1selecionado && player2selecionado){
+    buildscenario(context);
+  }
 
 }
 
