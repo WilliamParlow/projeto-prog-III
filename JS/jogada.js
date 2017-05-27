@@ -2,6 +2,7 @@
 var jogada = function() {
   // define qual o jogador que está sendo manipulado agora. Se for o primeiro frame da jogada
   // grava as posições iniciais para resetar após a jogada ser finalizada
+  playable = false;
 
   var projectil;
   var player;
@@ -31,7 +32,7 @@ if(isPlayer1 && numeroJogada === 0){
   player = player1;
 }
 
-	
+
   }
 
 
@@ -169,6 +170,7 @@ function encerraJogada(projetil){
 	  $(playersUI[1]).addClass('player-active');
 	  $(playersUI[0]).removeClass('player-active');
 	}
+  playable= true;
 }
 
 function createDamage(projetil,context){

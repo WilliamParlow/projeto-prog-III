@@ -135,6 +135,7 @@ function criaPlayer(numPlayer, canvas,altura, largura){
     player.src = opcoes[opcaoPlayer1-1].ingame.src;
     player.onload = function(){
       canvas.drawImage(player, 20, altura-104); // tamanho em px do icone do player
+      $('#player1-image').css("background-image", `url(${player.src})`);
       projectilPlayer1.image.src = opcoes[opcaoPlayer1-1].projetil.src;
       player1.posicao.x = 20;
       player1.posicao.y = altura-104;
@@ -149,6 +150,7 @@ function criaPlayer(numPlayer, canvas,altura, largura){
     player.src = opcoes[opcaoPlayer2-1].ingame.src;
     player.onload = function(){
       canvas.drawImage(player, largura, altura-104); // tamanho em px do icone do player
+      $('#player2-image').css("background-image", `url(${player.src})`);
       projectilPlayer2.image.src = opcoes[opcaoPlayer2-1].projetil.src;
       player2.posicao.x = largura;
       player2.posicao.y = altura-97;

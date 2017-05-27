@@ -5,7 +5,7 @@ $('#canvasTemporario').mousemove(function(e){ // coordenadas da posição do mou
     y : e.pageY - this.offsetTop
   };
 
-  if(clicado){
+  if(clicado && playable){
 
     canvas_arrow(contextoTemporario,mousePos.x,mousePos.y,mouseclick.x,mouseclick.y);
     canvas_text(contextoTemporario,mouseclick,mousePos);
@@ -20,14 +20,16 @@ $('#canvasTemporario').mousedown(function(e){ // coordenadas do click sobre o ca
     y : e.pageY - this.offsetTop
   };
   if(player1selecionado && player2selecionado){
-      clicado = true;
-    }
+    clicado = true;
+  }
 
 });
 
 
 // Função ao soltar o botão do mouse
 $('#canvasTemporario').mouseup(function(e){
+
+  if (playable) {
 
     if(player1selecionado && player2selecionado){
       clicado = false;
@@ -43,7 +45,9 @@ $('#canvasTemporario').mouseup(function(e){
         projectilPlayer2.velocity.x = limitaVelocidade().x;
       }
     }
-      acaoclick(mouseclick);
 
+    acaoclick(mouseclick);
   }
+
+}
 );
