@@ -14,9 +14,7 @@ function criaMenuSelect(){
   if(player1selecionado && !player2selecionado)
   {
     contextoTemporario.fillText("Select Player 2:",110,170,800);
-  }
-
-  if(!player1selecionado)
+  } else if(!player1selecionado)
   {
     contextoTemporario.fillText("Select Player 1:",110,170,800);
   }
@@ -28,7 +26,6 @@ function criaMenuSelect(){
     }
 
   }
-  window.clearInterval(loadingScreen);
 
   if(player1selecionado && player2selecionado){
     buildscenario(context);

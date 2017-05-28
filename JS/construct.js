@@ -18,12 +18,12 @@ function buildscenario(context){
 
   $("#warn-container").removeClass('hide');
   if (isPlayer1) {
-	  $(playersUI[0]).addClass('player-active')
-	  $(playersUI[1]).removeClass('player-active');
-	} else {
-	  $(playersUI[1]).addClass('player-active');
-	  $(playersUI[0]).removeClass('player-active');
-	}
+    $(playersUI[0]).addClass('player-active')
+    $(playersUI[1]).removeClass('player-active');
+  } else {
+    $(playersUI[1]).addClass('player-active');
+    $(playersUI[0]).removeClass('player-active');
+  }
 
 }
 
@@ -113,7 +113,7 @@ function canvas_text(context,click,posicao){
 function calculaAngulo(click,posicao){
   var catetoAdj = (posicao.x-click.x);
   var catetoOps = posicao.y - click.y;
- hipotenusa = Math.sqrt(Math.pow(catetoAdj,2)+ Math.pow(catetoOps,2));
+  hipotenusa = Math.sqrt(Math.pow(catetoAdj,2)+ Math.pow(catetoOps,2));
   var angulo = Math.asin(catetoOps/hipotenusa);
   angulo = Math.round(Math.degrees(angulo));
   return {
@@ -135,6 +135,7 @@ function criaPlayer(numPlayer, canvas,altura, largura){
     player.src = opcoes[opcaoPlayer1-1].ingame.src;
     player.onload = function(){
       canvas.drawImage(player, 20, altura-104); // tamanho em px do icone do player
+      $('#player1-image').css("background-image", `url(${player.src})`);
       projectilPlayer1.image.src = opcoes[opcaoPlayer1-1].projetil.src;
       player1.posicao.x = 20;
       player1.posicao.y = altura-104;
@@ -149,6 +150,7 @@ function criaPlayer(numPlayer, canvas,altura, largura){
     player.src = opcoes[opcaoPlayer2-1].ingame.src;
     player.onload = function(){
       canvas.drawImage(player, largura, altura-104); // tamanho em px do icone do player
+      $('#player2-image').css("background-image", `url(${player.src})`);
       projectilPlayer2.image.src = opcoes[opcaoPlayer2-1].projetil.src;
       player2.posicao.x = largura;
       player2.posicao.y = altura-97;
@@ -165,68 +167,67 @@ function criaPlayer(numPlayer, canvas,altura, largura){
 
 function acaoclick(coordenadas){
 
-if(player1selecionado && !player2selecionado){
-       opcaoPlayer2= seleciona_opcao(coordenadas);
-       player2selecionado = true;
+  if(player1selecionado && !player2selecionado){
+    opcaoPlayer2= seleciona_opcao(coordenadas);
+    player2selecionado = true;
 
-       buildscenario(context);
-   }
-if(!player1selecionado && !player2selecionado){
-  opcaoPlayer1 = seleciona_opcao(coordenadas);
-  player1selecionado = true;
-  criaMenuSelect(contextoTemporario);
-}
-
-if(restart){
-  if(coordenadas.x>360 && coordenadas.x<640 && coordenadas.y>390&& coordenadas.y<470)
-  {
-    context.clearRect(0,0,1000,600);
-    contextoTemporario.clearRect(0,0,1000,600);
-    menuRestart();
+    buildscenario(context);
   }
-}
+  if(!player1selecionado && !player2selecionado){
+    opcaoPlayer1 = seleciona_opcao(coordenadas);
+    player1selecionado = true;
+    criaMenuSelect(contextoTemporario);
+  }
+
+  if(isRestart){
+    if(coordenadas.x>360 && coordenadas.x<640 && coordenadas.y>390&& coordenadas.y<470)
+    {
+      context.clearRect(0,0,1000,600);
+      contextoTemporario.clearRect(0,0,1000,600);
+      menuRestart();
+    }
+  }
 
 }
 
 
 function seleciona_opcao(coordenadas){
   var opcaoselecionada;
-   // se não foi selecionado nenhum player ainda é feita a seleção de acordo com as coordenadas do click
-    if(coordenadas.x>130 && coordenadas.x<280 && coordenadas.y>177 && coordenadas.y<330){
-      opcaoselecionada = 1;
-    }else if (coordenadas.x>330 && coordenadas.x<480 && coordenadas.y>177 && coordenadas.y<330) {
-      opcaoselecionada = 2;
-    }else if (coordenadas.x>530 && coordenadas.x<680 && coordenadas.y>177 && coordenadas.y<330) {
-      opcaoselecionada = 3;
-    }else if (coordenadas.x>730 && coordenadas.x<880 && coordenadas.y>177 && coordenadas.y<330) {
-      opcaoselecionada = 4;
-    }else if(coordenadas.x>130 && coordenadas.x<280 && coordenadas.y>360 && coordenadas.y<510){
-      opcaoselecionada = 5;
-    }else if (coordenadas.x>330 && coordenadas.x<480 && coordenadas.y>360 && coordenadas.y<510) {
-      opcaoselecionada = 6;
-    }else if (coordenadas.x>530 && coordenadas.x<680 && coordenadas.y>360 && coordenadas.y<510) {
-      opcaoselecionada = 7;
-    }else if (coordenadas.x>730 && coordenadas.x<880 && coordenadas.y>360 && coordenadas.y<510) {
-      opcaoselecionada = 8;
-    }
-    console.log(opcaoselecionada);
-    criaMenuSelect(contextoTemporario);
-    return opcaoselecionada;
-
+  // se não foi selecionado nenhum player ainda é feita a seleção de acordo com as coordenadas do click
+  if(coordenadas.x>130 && coordenadas.x<280 && coordenadas.y>177 && coordenadas.y<330){
+    opcaoselecionada = 1;
+  }else if (coordenadas.x>330 && coordenadas.x<480 && coordenadas.y>177 && coordenadas.y<330) {
+    opcaoselecionada = 2;
+  }else if (coordenadas.x>530 && coordenadas.x<680 && coordenadas.y>177 && coordenadas.y<330) {
+    opcaoselecionada = 3;
+  }else if (coordenadas.x>730 && coordenadas.x<880 && coordenadas.y>177 && coordenadas.y<330) {
+    opcaoselecionada = 4;
+  }else if(coordenadas.x>130 && coordenadas.x<280 && coordenadas.y>360 && coordenadas.y<510){
+    opcaoselecionada = 5;
+  }else if (coordenadas.x>330 && coordenadas.x<480 && coordenadas.y>360 && coordenadas.y<510) {
+    opcaoselecionada = 6;
+  }else if (coordenadas.x>530 && coordenadas.x<680 && coordenadas.y>360 && coordenadas.y<510) {
+    opcaoselecionada = 7;
+  }else if (coordenadas.x>730 && coordenadas.x<880 && coordenadas.y>360 && coordenadas.y<510) {
+    opcaoselecionada = 8;
+  }
+  console.log(opcaoselecionada);
+  criaMenuSelect(contextoTemporario);
+  return opcaoselecionada;
 
 }
 
 function constroiObjetosImages(){
 
-      for(var i=0;i<politicians.length;i++){
-        var opcao = new Object();
-        opcao.select = new Image();
-        opcao.projetil = new Image();
-        opcao.ingame = new Image();
-        opcao.select.src = "img/select_"+politicians[i]+".png";
-        opcao.projetil.src = "img/projetil_"+politicians[i]+".png";
-        opcao.ingame.src = "img/ingame_"+politicians[i]+".png";
-        opcoes.push(opcao);
+  for(var i=0;i<politicians.length;i++){
+    var opcao = new Object();
+    opcao.select = new Image();
+    opcao.projetil = new Image();
+    opcao.ingame = new Image();
+    opcao.select.src = "img/select_"+politicians[i]+".png";
+    opcao.projetil.src = "img/projetil_"+politicians[i]+".png";
+    opcao.ingame.src = "img/ingame_"+politicians[i]+".png";
+    opcoes.push(opcao);
 
   }
 }

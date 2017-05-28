@@ -1,6 +1,6 @@
 /* menu*/
 var loadingScreen;
-var restart = false;
+var isRestart = false;
 
 /* Playr life references */
 
@@ -17,6 +17,8 @@ var player2Life = {
 /* Player UI reference */
 var playersUI = $(".player-UI");
 
+/* Referencia de quando o player pode jogar */
+var playable = true;
 
 /* imagens para seleção de personagem*/
 var opcaoPlayer1;
