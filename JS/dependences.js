@@ -1,6 +1,6 @@
 /* menu*/
 var loadingScreen;
-var restart = false;
+var isRestart = false;
 
 /* Playr life references */
 

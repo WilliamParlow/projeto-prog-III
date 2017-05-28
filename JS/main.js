@@ -19,7 +19,7 @@ $('#canvasTemporario').mousedown(function(e){ // coordenadas do click sobre o ca
     x : e.pageX - this.offsetLeft,
     y : e.pageY - this.offsetTop
   };
-  if(player1selecionado && player2selecionado){
+  if(player1selecionado && player2selecionado && playable){
     clicado = true;
   }
 
@@ -49,5 +49,4 @@ $('#canvasTemporario').mouseup(function(e){
     acaoclick(mouseclick);
   }
 
-}
-);
+});

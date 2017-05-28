@@ -130,6 +130,9 @@ function analisaImpactoPlayer(projetil, player){
       player.vida -=1;
       if(player.vida === 0){
         winner(player);
+        isRestart = true;
+      } else {
+        isRestart = false;
       }
 
       encerraJogada(projetil);
