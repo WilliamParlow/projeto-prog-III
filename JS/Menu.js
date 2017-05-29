@@ -68,22 +68,32 @@ function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
   }
 
 }
-
+var musicTrack = new Audio();
 function music(){
-  var music = new Audio();
-  music.src = "Heathens 8-bits.MP3";
+
+  let musicOrigins = [
+    "musics/Diffrent Strokes 8-bits.mp3",
+    "musics/Enter Sandman 8-bits.mp3",
+    "musics/Feel Good 8-bits.mp3",
+    "musics/Heathens 8-bits.mp3",
+    "musics/Mr. Brightside 8-bits.mp3",
+    "musics/Sexual 8-bits.mp3",
+    "musics/Shape Of You 8-bits.mp3",
+    "musics/Sneakin 8-bits.mp3"
+  ];
+
+  setMusicConfig( musicTrack, musicOrigins[ Math.round( Math.random() * 7 ) ] )
+
+}
+
+function setMusicConfig(music, origin) {
+
+  music.src = origin;
   music.loop = true;
   music.autoplay = true;
   music.crossOrigin = "8-bit Universe Youtube Channel"; // canal do youtube autor da musica
   music.play();
   music.volume-=0.9;
-  // https://www.youtube.com/watch?v=zZbmhTe4ClY
-  // https://www.youtube.com/watch?v=wWmbs0MYKNc
-  // https://www.youtube.com/watch?v=eUVMQmO933U
-  // https://www.youtube.com/watch?v=Ak5GYF1Cnek
-  // https://www.youtube.com/watch?v=EE6Iws3Tagk
-  // https://www.youtube.com/watch?v=22Y2z6TzyVc
-  // https://www.youtube.com/watch?v=brDbHtkZ2qI
 
 }
 
