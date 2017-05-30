@@ -83,7 +83,6 @@ function music(){
   ];
 
   setMusicConfig( musicTrack, musicOrigins[ Math.round( Math.random() * 7 ) ] )
-
 }
 
 function setMusicConfig(music, origin) {
@@ -94,7 +93,6 @@ function setMusicConfig(music, origin) {
   music.crossOrigin = "8-bit Universe Youtube Channel"; // canal do youtube autor da musica
   music.play();
   music.volume-=0.9;
-
 }
 
 function telaCarregamento(){

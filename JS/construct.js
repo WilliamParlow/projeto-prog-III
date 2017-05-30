@@ -168,15 +168,27 @@ function criaPlayer(numPlayer, canvas,altura, largura){
 function acaoclick(coordenadas){
 
   if(player1selecionado && !player2selecionado){
-    opcaoPlayer2= seleciona_opcao(coordenadas);
-    player2selecionado = true;
 
-    buildscenario(context);
+    opcaoPlayer2= seleciona_opcao(coordenadas);
+    
+    if (opcaoPlayer2) {
+
+      player2selecionado = true;
+      buildscenario(context);
+    };
   }
+
   if(!player1selecionado && !player2selecionado){
+
     opcaoPlayer1 = seleciona_opcao(coordenadas);
-    player1selecionado = true;
-    criaMenuSelect(contextoTemporario);
+
+    if (opcaoPlayer1) player1selecionado = true;
+      criaMenuSelect(contextoTemporario);
+  }
+
+  if (player1selecionado && player2selecionado) {
+
+
   }
 
   if(isRestart){
