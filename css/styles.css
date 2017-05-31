@@ -1,0 +1,110 @@
+body {
+    background-color: #cccccc;
+}
+
+
+.canvasSize{
+    width: 400;
+}
+
+
+.footer {
+    font-family: sans-serif;
+  position: relative;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+    width: auto;
+    height: auto;
+  text-align: center;
+     background: #000;
+}
+
+
+.jumbotron {
+    background-color: black;
+    text-align: center;
+    height: auto;
+    
+}
+
+
+@-webkit-keyframes rainbowdropshadow {
+  0% {
+    text-shadow: 2px 2px #FFFF00;
+  }
+  8% {
+   text-shadow: 2px 2px #7FFF00;
+  }
+  16% {
+    text-shadow: 2px 2px #00FF00;
+  }
+  25% {
+    text-shadow: 2px 2px 1px 1px 0 #7FFF00, 2px 2px 0 #00FF00, 3px 3px 0 #00FF7F;
+  }
+  33% {
+    text-shadow: 2px 2px #00FFFF;
+  }
+  41% {
+    text-shadow: 2px 2px  #007FFF;
+  }
+  50% {
+    text-shadow: 2px 2px #0000FF;
+  }
+  58% {
+    text-shadow: 2px 2px #7F00FF;
+  }
+  66% {
+    text-shadow: 2px 2px #FF00FF;
+  }
+  75% {
+    text-shadow: 2px 2px #FF007F;
+  }
+  83% {
+    text-shadow: 2px 2px #FF0000;
+  }
+  91% {
+    text-shadow: 2px 2px #FF7F00;
+  }
+  100% {
+    text-shadow: 2px 2px #FFFF00;
+  }
+}
+
+#logo {
+    font-size: 30px;
+    color: aliceblue;
+    text-shadow: 1px 1px 0 #000000;
+    margin-bottom: -10px;
+  -webkit-animation: rainbowdropshadow .15s infinite;
+  animation: rainbowdropshadow .13s infinite;
+}
+
+::-webkit-scrollbar {background: #99cc00;} /* barra de rolagem toda */ 
+::-webkit-scrollbar-thumb {background: #000000;} /* parte da barra que se movimenta */
+::-webkit-scrollbar-button {background:#ffffff;} /* ponta da barra de rolagem */ 
+::-webkit-scrollbar-track {background:#ffffff;} /* fundo da barra de rolagem, parte fixa */ 
+::-webkit-scrollbar-track-piece {background:#ffffff;} /* fundo da barra de rolagem, parte que ainda falta rolar */
+::-webkit-scrollbar-corner {background:#99cc00;} /* canto inferior direito da barra de rolagem */
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+
+.textoFooter{
+    color: #fff;
+    font-family: sans-serif;
+    
+}
+
+
+  
