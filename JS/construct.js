@@ -170,7 +170,7 @@ function acaoclick(coordenadas){
   if(player1selecionado && !player2selecionado){
 
     opcaoPlayer2= seleciona_opcao(coordenadas);
-    
+
     if (opcaoPlayer2) {
 
       player2selecionado = true;
@@ -196,7 +196,8 @@ function acaoclick(coordenadas){
     {
       context.clearRect(0,0,1000,600);
       contextoTemporario.clearRect(0,0,1000,600);
-      menuRestart();
+      window.clearInterval(intervaloJogada); //impede que jogada rode enquanto está na tela de seleção de personagem depois do restart.
+      start();
     }
   }
 
@@ -223,7 +224,6 @@ function seleciona_opcao(coordenadas){
   }else if (coordenadas.x>730 && coordenadas.x<880 && coordenadas.y>360 && coordenadas.y<510) {
     opcaoselecionada = 8;
   }
-  console.log(opcaoselecionada);
   criaMenuSelect(contextoTemporario);
   return opcaoselecionada;
 

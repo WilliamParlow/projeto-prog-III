@@ -71,7 +71,6 @@ analisaImpactoPredio(projectil);
 
 // identifica se o projetil saiu da tela para resetar tudo, possibilitando nova jogada
 if(projectil.position.x > 1000 || projectil.position.y > 600 || projectil.position.x < 0 ){
-  console.log("projetil pra fora");
   encerraJogada(projectil);
 }
 
@@ -113,22 +112,19 @@ function limitaVelocidade (){
 function analisaImpactoPlayer(projetil, player){
   if(projetil.position.x > player.posicao.x && projetil.position.x <(player.posicao.x +player.tamanho.width)){
     if(projetil.position.y > player.posicao.y && projetil.position.y <(player.posicao.y +player.tamanho.height)){
-      console.log("Acertou o ardversário");
+      //se entrar aqui é porque acertou o adversário
 
 
       if (isPlayer1) {
-        console.log(player1Life);
         $(player1Life.diamonds[player1Life.index]).addClass('lifeLost');
         player1Life.index--;
       } else {
-        console.log(player2Life);
         $(player2Life.diamonds[player2Life.index]).addClass('lifeLost');
         player2Life.index++;
       }
 
 
       player.vida -=1;
-      console.log(player);
       if(player.vida === 0){
         winner(player);
         isRestart = true;
@@ -152,7 +148,7 @@ function analisaImpactoPredio(projetil){
             }
           }
         }
-        console.log("Acertou o prédio");
+        // se ele não retornou zero entra aqui, o que significa que acertou o predio
         createDamage(projetil,context);
         encerraJogada(projetil);
       }
@@ -165,7 +161,6 @@ function encerraJogada(projetil){
   projetil.position.x = projectilPosIniX;
   numeroJogada=0;
   contextoTemporario.clearRect(0,0,canvasTemporario.width,canvasTemporario.height); //impede que o projetil fique congelado onde o impacto acontece
-  console.log("Player " + num);
   window.clearInterval(intervaloJogada);
   if (isPlayer1) {
 	  $(playersUI[0]).addClass('player-active')
@@ -207,5 +202,26 @@ function winner(player_loser){
   context.font = "20px'Press Start 2P'";
   context.fillText(textloser,270,300);
   context.fillText("Try harder next time.",290,350);
-  restart();
+  restartButton();
+}
+
+function gameRestart(){
+  $(".diamond").removeClass("lifeLost");
+  isRestart = false;
+  playable = true;
+  opcaoPlayer1;
+  opcaoPlayer2;
+  player1selecionado = false;
+  player2selecionado = false;
+  player1Life.index = 2;
+  player2Life.index = 0;
+  player1.vida = 3;
+  player2.vida = 3;
+  indicePredios = 0;
+  predios = new Array();
+  playercriado =false;
+  isPlayer1 = true;
+  numeroJogada = 0;
+  damages = [];
+  criaMenuSelect();
 }

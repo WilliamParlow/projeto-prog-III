@@ -7,7 +7,7 @@ function criaMenuEsboco(canvaschoose){
 }
 
 function criaMenuSelect(){
-
+  contextoTemporario.clearRect(0,0,1000,600);
   criaMenuEsboco(contextoTemporario);
   contextoTemporario.fillStyle = "#FFF";
   contextoTemporario.font = "50px 'Press Start 2P'";
@@ -103,7 +103,7 @@ function telaCarregamento(){
   contextoTemporario.fillText("Loading... ",300,500);
 }
 
-function restart(){
+function restartButton(){
   $("#warn-container").addClass('hide');
   context.fillStyle = "#002146";
   roundRect(context,350,380,300,100,20,true,false);
@@ -112,6 +112,4 @@ function restart(){
   context.fillStyle = "#FFF";
   context.font = "35px 'Press Start 2P'";
   context.fillText("Restart",375,445);
-
-
 }
