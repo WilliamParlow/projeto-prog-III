@@ -60,6 +60,7 @@ var projectilPosIniX;
 var projectilPosIniY;
 var num; //define o numero do player na frase "vez do player x"
 var projectilAngle = 0; // angulo da imagem do projetil.
+var windForce; // recebe o valor da força do vento
 
 var projectilPlayer1 = {
   position: {x: 0, y: 0},

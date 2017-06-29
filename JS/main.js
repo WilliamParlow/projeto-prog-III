@@ -29,6 +29,8 @@ $('#canvasTemporario').mousedown(function(e){ // coordenadas do click sobre o ca
 // Função ao soltar o botão do mouse
 $('#canvasTemporario').mouseup(function(e){
 
+  windForce = map(Math.random() * 1000, 0, 1000, -0.035, 0.035);
+
   if (playable) {
 
     if(player1selecionado && player2selecionado){
