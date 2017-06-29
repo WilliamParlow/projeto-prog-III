@@ -37,6 +37,7 @@ height: auto;
   height: 60px;
   flex-direction: column;
   position: absolute;
+  margin-left: 200px
 }
 
 .warning{

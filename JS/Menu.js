@@ -7,10 +7,12 @@ function criaMenuEsboco(canvaschoose){
 }
 
 function criaMenuSelect(){
+  context.clearRect(0,0,1000,600);
   contextoTemporario.clearRect(0,0,1000,600);
   criaMenuEsboco(contextoTemporario);
   contextoTemporario.fillStyle = "#FFF";
   contextoTemporario.font = "50px 'Press Start 2P'";
+  if(!selecionando){
   if(player1selecionado && !player2selecionado)
   {
     contextoTemporario.fillText("Select Player 2:",110,170,800);
@@ -29,7 +31,7 @@ function criaMenuSelect(){
 
   if(player1selecionado && player2selecionado){
     buildscenario(context);
-  }
+  }}
 
 }
 

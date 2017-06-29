@@ -25,8 +25,8 @@ body {
 .jumbotron {
     background-color: black;
     text-align: center;
-    height: auto;
-    
+    height: 50px;
+
 }
 
 
@@ -76,15 +76,15 @@ body {
     font-size: 30px;
     color: aliceblue;
     text-shadow: 1px 1px 0 #000000;
-    margin-bottom: -10px;
+    margin-top: -40px;
   -webkit-animation: rainbowdropshadow .15s infinite;
   animation: rainbowdropshadow .13s infinite;
 }
 
-::-webkit-scrollbar {background: #99cc00;} /* barra de rolagem toda */ 
+::-webkit-scrollbar {background: #99cc00;} /* barra de rolagem toda */
 ::-webkit-scrollbar-thumb {background: #000000;} /* parte da barra que se movimenta */
-::-webkit-scrollbar-button {background:#ffffff;} /* ponta da barra de rolagem */ 
-::-webkit-scrollbar-track {background:#ffffff;} /* fundo da barra de rolagem, parte fixa */ 
+::-webkit-scrollbar-button {background:#ffffff;} /* ponta da barra de rolagem */
+::-webkit-scrollbar-track {background:#ffffff;} /* fundo da barra de rolagem, parte fixa */
 ::-webkit-scrollbar-track-piece {background:#ffffff;} /* fundo da barra de rolagem, parte que ainda falta rolar */
 ::-webkit-scrollbar-corner {background:#99cc00;} /* canto inferior direito da barra de rolagem */
 ::-webkit-scrollbar {
@@ -103,8 +103,5 @@ body {
 .textoFooter{
     color: #fff;
     font-family: sans-serif;
-    
+
 }
-
-
-  

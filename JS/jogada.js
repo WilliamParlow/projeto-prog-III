@@ -209,6 +209,8 @@ function gameRestart(){
   $(".diamond").removeClass("lifeLost");
   isRestart = false;
   playable = true;
+  selecionado = false;
+  selecionando = false;
   opcaoPlayer1;
   opcaoPlayer2;
   player1selecionado = false;
