@@ -139,11 +139,13 @@ function criaPlayer(numPlayer, canvas,altura, largura){
       projectilPlayer1.image.src = opcoes[opcaoPlayer1-1].projetil.src;
       player1.posicao.x = 20;
       player1.posicao.y = altura-104;
-      player1.tamanho.width = player.width;
-      player1.tamanho.height = player.height;
+      player1.tamanho.width = 40;
+      player1.tamanho.height = 104;
       projectilPlayer1.position.x = player1.posicao.x + 5;
       projectilPlayer1.position.y = player1.posicao.y - 24;
+      skills(opcaoPlayer1,player1);
     }
+
     break;
     case 2:
     var player = new Image();
@@ -154,11 +156,13 @@ function criaPlayer(numPlayer, canvas,altura, largura){
       projectilPlayer2.image.src = opcoes[opcaoPlayer2-1].projetil.src;
       player2.posicao.x = largura;
       player2.posicao.y = altura-97;
-      player2.tamanho.width = player.width;
-      player2.tamanho.height = player.height;
+      player2.tamanho.width = 40;
+      player2.tamanho.height = 104;
       projectilPlayer2.position.x = player2.posicao.x;
       projectilPlayer2.position.y = player2.posicao.y;
+      skills(opcaoPlayer2, player2);
     }
+
     playercriado = true;
     break;
   }
@@ -233,9 +237,9 @@ function detailMenu(coordenadas){
     contextoTemporario.fillText("Cons: none yet",350,300,550);
   }else if (coordenadas.x>530 && coordenadas.x<680 && coordenadas.y>177 && coordenadas.y<330) {
     optionSelectedtemp = 3;
-    contextoTemporario.fillText("OBAMACHINE",450,140,550);
-    contextoTemporario.fillText("Pros: ObamaCare give you one more life",350,200,550);
-    contextoTemporario.fillText("Cons: none yet",350,300,550);
+    contextoTemporario.fillText("Agent orange",425,140,550);
+    contextoTemporario.fillText("Pros: You start with a wall around you!",350,200,550);
+    contextoTemporario.fillText("Cons: The wall doesn't make any difference",350,300,550);
   }else if (coordenadas.x>730 && coordenadas.x<880 && coordenadas.y>177 && coordenadas.y<330) {
     optionSelectedtemp = 4;
     contextoTemporario.fillText("OBAMACHINE",450,140,550);
@@ -299,4 +303,27 @@ function designButtons(){
   contextoTemporario.fillStyle = "#FFF";
   contextoTemporario.font = "35px 'Press Start 2P'";
   contextoTemporario.fillText("Cancel",580,445);
+}
+
+function skills(option,player){
+switch (option){
+  case 1:
+    player.vida = player.vida +1;
+  break;
+  case 3:
+    var tijolo = new Image();
+    tijolo.src = opcoes[option-1].projetil.src;
+    for(var i = 0 ; i<21;i++){
+      if(i<8){
+        context.drawImage(tijolo,player.posicao.x -40,player.posicao.y-30+(i*17)); //desenha 1 coluna
+      }else if(i<14){
+        context.drawImage(tijolo,player.posicao.x -162+(i*18),player.posicao.y-30); // desenha parte de cima
+      }else{
+        context.drawImage(tijolo,player.posicao.x +74,player.posicao.y-252+(i*17)); //desenha 1 coluna
+      }
+    }
+  break;
+
+}
+
 }
