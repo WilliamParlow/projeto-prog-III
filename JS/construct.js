@@ -99,11 +99,16 @@ function canvas_text(context,click,posicao){
   text = text.concat(num);
   context.fillStyle = "#FFF";
   context.font = "20px 'Press Start 2P'";;
+  if((isPlayer1 && opcaoPlayer1 ===6)||(!isPlayer1 && opcaoPlayer2 ===6)){
+    text = "Pauer: ##";
+  }
   context.fillText(text,click.x+20,click.y-20);
   text = "";
   text = text.concat("Degrees: ");
   text = text.concat(  calculaAngulo(click,posicao).x.toString());
-
+  if((isPlayer1 && opcaoPlayer1 ===6)||(!isPlayer1 && opcaoPlayer2 ===6)){
+    text = "Decriez: ??";
+  }
 
   context.fillText(text,click.x+20,click.y-50);
 
@@ -143,7 +148,7 @@ function criaPlayer(numPlayer, canvas,altura, largura){
       player1.tamanho.height = 104;
       projectilPlayer1.position.x = player1.posicao.x + 5;
       projectilPlayer1.position.y = player1.posicao.y - 24;
-      skills(opcaoPlayer1,player1);
+      skills(opcaoPlayer1,player1,projectilPlayer1);
     }
 
     break;
@@ -160,7 +165,7 @@ function criaPlayer(numPlayer, canvas,altura, largura){
       player2.tamanho.height = 104;
       projectilPlayer2.position.x = player2.posicao.x;
       projectilPlayer2.position.y = player2.posicao.y;
-      skills(opcaoPlayer2, player2);
+      skills(opcaoPlayer2, player2,projectilPlayer2);
     }
 
     playercriado = true;
@@ -228,43 +233,43 @@ function detailMenu(coordenadas){
   if(coordenadas.x>130 && coordenadas.x<280 && coordenadas.y>177 && coordenadas.y<330){
     optionSelectedtemp = 1;
     contextoTemporario.fillText("OBAMACHINE",450,140,550);
-    contextoTemporario.fillText("Pros: ObamaCare give you one more life",350,200,550);
+    contextoTemporario.fillText("Pros: ObamaCare give him one more life",350,200,550);
     contextoTemporario.fillText("Cons: none yet",350,300,550);
   }else if (coordenadas.x>330 && coordenadas.x<480 && coordenadas.y>177 && coordenadas.y<330) {
     optionSelectedtemp = 2;
-    contextoTemporario.fillText("OBAMACHINE",450,140,550);
-    contextoTemporario.fillText("Pros: ObamaCare give you one more life",350,200,550);
-    contextoTemporario.fillText("Cons: none yet",350,300,550);
+    contextoTemporario.fillText("Mother of Swan",380,140,550);
+    contextoTemporario.fillText("Pros: Wind blows always in her favor",350,200,550);
+    contextoTemporario.fillText("Cons:.... her... age(?)",350,300,550); // diminuir potencia
   }else if (coordenadas.x>530 && coordenadas.x<680 && coordenadas.y>177 && coordenadas.y<330) {
     optionSelectedtemp = 3;
     contextoTemporario.fillText("Agent orange",425,140,550);
-    contextoTemporario.fillText("Pros: You start with a wall around you!",350,200,550);
+    contextoTemporario.fillText("Pros: He starts with a wall around him!",350,200,550);
     contextoTemporario.fillText("Cons: The wall doesn't make any difference",350,300,550);
   }else if (coordenadas.x>730 && coordenadas.x<880 && coordenadas.y>177 && coordenadas.y<330) {
     optionSelectedtemp = 4;
-    contextoTemporario.fillText("OBAMACHINE",450,140,550);
-    contextoTemporario.fillText("Pros: ObamaCare give you one more life",350,200,550);
-    contextoTemporario.fillText("Cons: none yet",350,300,550);
+    contextoTemporario.fillText("Canadian gentlemen",350,140,550);
+    contextoTemporario.fillText("Pros: He apologizes when he hits an enemy",350,200,550);
+    contextoTemporario.fillText("Cons: He doesn't want to kill his enemies ",350,300,550);
   }else if(coordenadas.x>130 && coordenadas.x<280 && coordenadas.y>360 && coordenadas.y<510){
     optionSelectedtemp = 5;
-    contextoTemporario.fillText("OBAMACHINE",450,140,550);
-    contextoTemporario.fillText("Pros: ObamaCare give you one more life",350,200,550);
-    contextoTemporario.fillText("Cons: none yet",350,300,550);
+    contextoTemporario.fillText("Beberronis Vodkius",360,140,550);
+    contextoTemporario.fillText("Pros: He rides a bear!",350,200,550);
+    contextoTemporario.fillText("Cons: In Russia the game play you",350,300,550);
   }else if (coordenadas.x>330 && coordenadas.x<480 && coordenadas.y>360 && coordenadas.y<510) {
     optionSelectedtemp = 6;
-    contextoTemporario.fillText("OBAMACHINE",450,140,550);
-    contextoTemporario.fillText("Pros: ObamaCare give you one more life",350,200,550);
-    contextoTemporario.fillText("Cons: none yet",350,300,550);
+    contextoTemporario.fillText("I know nothing!",380,140,550);
+    contextoTemporario.fillText("Pros: He has a Triplex!",350,200,550);
+    contextoTemporario.fillText("Cons: Supposedly illiterate",350,300,550);
   }else if (coordenadas.x>530 && coordenadas.x<680 && coordenadas.y>360 && coordenadas.y<510) {
     optionSelectedtemp = 7;
-    contextoTemporario.fillText("OBAMACHINE",450,140,550);
-    contextoTemporario.fillText("Pros: ObamaCare give you one more life",350,200,550);
-    contextoTemporario.fillText("Cons: none yet",350,300,550);
+    contextoTemporario.fillText("Woman-Sapiens",400,140,550);
+    contextoTemporario.fillText("Pros: She \"stores wind\", so she will not be affected by it!",350,200,550);
+    contextoTemporario.fillText("Cons: Your game might end sooner.",350,300,550);
   }else if (coordenadas.x>730 && coordenadas.x<880 && coordenadas.y>360 && coordenadas.y<510) {
     optionSelectedtemp = 8;
-    contextoTemporario.fillText("OBAMACHINE",450,140,550);
-    contextoTemporario.fillText("Pros: ObamaCare give you one more life",350,200,550);
-    contextoTemporario.fillText("Cons: none yet",350,300,550);
+    contextoTemporario.fillText("Pyng Pong",450,140,550);
+    contextoTemporario.fillText("Pros: He has his own country",350,200,550);
+    contextoTemporario.fillText("Cons:  His projectile is really tiny",350,300,550);
   }
     contextoTemporario.drawImage(opcoes[optionSelectedtemp-1].ingame,100,100,200,400);
 }
@@ -305,7 +310,7 @@ function designButtons(){
   contextoTemporario.fillText("Cancel",580,445);
 }
 
-function skills(option,player){
+function skills(option,player, projetil){
 switch (option){
   case 1:
     player.vida = player.vida +1;
