@@ -1,3 +1,8 @@
+function map(x, in_min, in_max, out_min, out_max) {
+  var temp_wind = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+
+  return temp_wind;
+}
 
 var jogada = function() {
   // define qual o jogador que está sendo manipulado agora. Se for o primeiro frame da jogada
@@ -34,7 +39,16 @@ if(isPlayer1 && numeroJogada === 0){
 
 
   }
+if((opcaoPlayer1 === 7 && !isPlayer1)||(opcaoPlayer2 ===7 && isPlayer1)){
+  windForce = 0;
+}
 
+if(opcaoPlayer1 ===2 && !isPlayer1){
+  windForce = Math.abs(windForce);
+}
+if(opcaoPlayer2 ===2 && isPlayer1){
+  windForce = - Math.abs(windForce);
+}
 
 // parte da física do game
 
@@ -50,11 +64,16 @@ Fy = (isNaN(Fy) ? 0 : Fy);
 var ax = Fx / projectil.mass;
 var ay = projectil.ag + (Fy / projectil.mass);
 // Integrate to get velocity
-projectil.velocity.x += ax*frameRate;
+projectil.velocity.x += ax*frameRate + windForce;
 projectil.velocity.y += ay*frameRate;
 
 // Integrate to get position
-projectil.position.x += projectil.velocity.x/5;
+if(opcaoPlayer1 === 5 && !isPlayer1 || opcaoPlayer2 ===5 && isPlayer1){
+  projectil.position.x -= projectil.velocity.x/5;
+}else{
+  projectil.position.x += projectil.velocity.x/5;
+}
+
 projectil.position.y += projectil.velocity.y/5;
 
 
@@ -113,7 +132,13 @@ function analisaImpactoPlayer(projetil, player){
   if(projetil.position.x > player.posicao.x && projetil.position.x <(player.posicao.x +player.tamanho.width)){
     if(projetil.position.y > player.posicao.y && projetil.position.y <(player.posicao.y +player.tamanho.height)){
       //se entrar aqui é porque acertou o adversário
-
+      encerraJogada(projetil);
+      if(opcaoPlayer1 ===4 && !isPlayer1){
+          contextoTemporario.fillText("Sorry!",player1.posicao.x +30, player1.posicao.y -20);
+      }
+      if(opcaoPlayer2 ===4 && isPlayer1){
+          contextoTemporario.fillText("Sorry!",player2.posicao.x +30, player2.posicao.y -20);
+      }
 
       if (isPlayer1) {
         $(player1Life.diamonds[player1Life.index]).addClass('lifeLost');
@@ -123,7 +148,6 @@ function analisaImpactoPlayer(projetil, player){
         player2Life.index++;
       }
 
-
       player.vida -=1;
       if(player.vida === 0){
         winner(player);
@@ -131,10 +155,10 @@ function analisaImpactoPlayer(projetil, player){
       } else {
         isRestart = false;
       }
-
-      encerraJogada(projetil);
     }
-  }
+
+    }
+
 }
 
 function analisaImpactoPredio(projetil){
@@ -209,6 +233,8 @@ function gameRestart(){
   $(".diamond").removeClass("lifeLost");
   isRestart = false;
   playable = true;
+  selecionado = false;
+  selecionando = false;
   opcaoPlayer1;
   opcaoPlayer2;
   player1selecionado = false;

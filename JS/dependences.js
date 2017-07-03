@@ -1,7 +1,9 @@
 /* menu*/
+var selecionado = false;
+var selecionando = false;
 var loadingScreen;
 var isRestart = false;
-
+var optionSelectedtemp = undefined;
 /* Playr life references */
 
 var player1Life = {
