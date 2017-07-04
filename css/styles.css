@@ -23,17 +23,17 @@ body {
 
 
 .jumbotron {
-<<<<<<< HEAD
+
   background-color: black;
   text-align: center;
   height: 90px;
   padding: 0;
-=======
+
     background-color: black;
     text-align: center;
     height: 50px;
 
->>>>>>> Anderson2.0
+
 }
 
 
@@ -80,16 +80,16 @@ body {
 }
 
 #logo {
-<<<<<<< HEAD
+
   font-size: 30px;
   color: aliceblue;
   text-shadow: 1px 1px 0 #000000;
-=======
+
     font-size: 30px;
     color: aliceblue;
     text-shadow: 1px 1px 0 #000000;
     margin-top: -40px;
->>>>>>> Anderson2.0
+
   -webkit-animation: rainbowdropshadow .15s infinite;
   animation: rainbowdropshadow .13s infinite;
 }
@@ -114,12 +114,12 @@ body {
 }
 
 .textoFooter{
-<<<<<<< HEAD
+
   color: #fff;
   font-family: sans-serif;
-=======
+
     color: #fff;
     font-family: sans-serif;
->>>>>>> Anderson2.0
+
 
 }
