@@ -1,38 +1,31 @@
 body {
-  background-color: #cccccc;
+    background-color: #cccccc;
 }
 
 
 .canvasSize{
-  width: 400;
+    width: 400;
 }
 
 
 .footer {
-  font-family: sans-serif;
+    font-family: sans-serif;
   position: relative;
   right: 0;
   bottom: 0;
   left: 0;
   padding: 1rem;
-  width: auto;
-  height: auto;
+    width: auto;
+    height: auto;
   text-align: center;
-  background: #000;
+     background: #000;
 }
 
 
 .jumbotron {
-
-  background-color: black;
-  text-align: center;
-  height: 90px;
-  padding: 0;
-
     background-color: black;
     text-align: center;
     height: 50px;
-
 
 }
 
@@ -42,7 +35,7 @@ body {
     text-shadow: 2px 2px #FFFF00;
   }
   8% {
-    text-shadow: 2px 2px #7FFF00;
+   text-shadow: 2px 2px #7FFF00;
   }
   16% {
     text-shadow: 2px 2px #00FF00;
@@ -80,16 +73,10 @@ body {
 }
 
 #logo {
-
-  font-size: 30px;
-  color: aliceblue;
-  text-shadow: 1px 1px 0 #000000;
-
     font-size: 30px;
     color: aliceblue;
     text-shadow: 1px 1px 0 #000000;
     margin-top: -40px;
-
   -webkit-animation: rainbowdropshadow .15s infinite;
   animation: rainbowdropshadow .13s infinite;
 }
@@ -114,12 +101,7 @@ body {
 }
 
 .textoFooter{
-
-  color: #fff;
-  font-family: sans-serif;
-
     color: #fff;
     font-family: sans-serif;
-
 
 }
