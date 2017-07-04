@@ -142,3 +142,20 @@ height: auto;
   border-left: 2px solid #FFF !important;
   background-color: #264b75 !important;
 }
+
+#wind, .wind-direction {
+  height: 100%;
+  width: 48px;
+}
+
+#wind {
+  background-image: url('../img/wind.png');
+  background-size: contain;
+}
+
+.wind-direction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}

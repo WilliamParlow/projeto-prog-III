@@ -30,6 +30,7 @@ $('#canvasTemporario').mousedown(function(e){ // coordenadas do click sobre o ca
 $('#canvasTemporario').mouseup(function(e){
 
   windForce = map(Math.random() * 1000, 0, 1000, -0.035, 0.035);
+  changeWindIntensityStyle(windForce);
 
   if (playable) {
 

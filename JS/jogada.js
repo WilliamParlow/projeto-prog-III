@@ -227,3 +227,11 @@ function gameRestart(){
   damages = [];
   criaMenuSelect();
 }
+
+function changeWindIntensityStyle(value) {
+  if (value > 0) {
+    $('#wind').css('','');
+  } else {
+
+  }
+}
