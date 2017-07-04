@@ -94,14 +94,16 @@ var player1 = {
   name: 'Player 1',
   tamanho : { },
   posicao : { },
-  vida:3
+  vida:3,
+  image : new Image()
 };
 
 var player2 = {
   name: 'Player 2',
   tamanho : { },
   posicao : { },
-  vida:3
+  vida:3,
+  image : new Image()
 };
 
 var damages = []; // salva todos os danos, de todos os prédios

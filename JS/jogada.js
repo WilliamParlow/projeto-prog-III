@@ -43,8 +43,7 @@ if((opcaoPlayer1 === 7 && !isPlayer1)||(opcaoPlayer2 ===7 && isPlayer1)){
 
 if(opcaoPlayer1 ===2 && !isPlayer1){
   windForce = Math.abs(windForce);
-}
-if(opcaoPlayer2 ===2 && isPlayer1){
+}else if(opcaoPlayer2 ===2 && isPlayer1){
   windForce = - Math.abs(windForce);
 }
 
@@ -169,6 +168,7 @@ function analisaImpactoPredio(projetil){
         // se ele não retornou zero entra aqui, o que significa que acertou o predio
         createDamage(projetil,context);
         encerraJogada(projetil);
+
       }
     }
   }
@@ -183,11 +183,14 @@ function encerraJogada(projetil){
   if (isPlayer1) {
     $(playersUI[0]).addClass('player-active')
     $(playersUI[1]).removeClass('player-active');
+
   } else {
     $(playersUI[1]).addClass('player-active');
     $(playersUI[0]).removeClass('player-active');
   }
   playable= true;
+  context.drawImage(player1.image,player1.posicao.x,player1.posicao.y,40,104);
+  context.drawImage(player2.image,player2.posicao.x,player2.posicao.y,40,104);
 }
 
 function createDamage(projetil,context){
