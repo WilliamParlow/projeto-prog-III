@@ -19,6 +19,11 @@ justify-content: center;
 flex-direction: column;
 height: auto;
 }*/
+
+.container-fluid {
+  padding: 0;
+}
+
 #canvasGame{
   background:url(../img/bandeira2.jpg);
   background-size: cover;
@@ -42,7 +47,11 @@ height: auto;
 
 .warning{
   height: 100%;
+<<<<<<< HEAD
   width: 80%;
+=======
+  width: 800px;
+>>>>>>> d26b01b03b2deb74267f7f62a444df14d4644313
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   color: #FFF;
@@ -56,7 +65,17 @@ height: auto;
 .player-UI {
   padding: 0 10px;
   margin: 0 6px;
-  width: 50%;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
+}
+
+.wind-direction {
+  padding: 0 10px;
+  margin: 0 6px;
+  width: 20%;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -127,4 +146,21 @@ height: auto;
   border-right: 2px solid #FFF !important;
   border-left: 2px solid #FFF !important;
   background-color: #264b75 !important;
+}
+
+#wind, .wind-direction {
+  height: 100%;
+  width: 48px;
+}
+
+#wind {
+  background-image: url('../img/wind.png');
+  background-size: contain;
+}
+
+.wind-direction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
