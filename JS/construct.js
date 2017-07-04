@@ -99,11 +99,16 @@ function canvas_text(context,click,posicao){
   text = text.concat(num);
   context.fillStyle = "#FFF";
   context.font = "20px 'Press Start 2P'";;
+  if((isPlayer1 && opcaoPlayer1 ===6)||(!isPlayer1 && opcaoPlayer2 ===6)){
+    text = "Pauer: ##";
+  }
   context.fillText(text,click.x+20,click.y-20);
   text = "";
   text = text.concat("Degrees: ");
   text = text.concat(  calculaAngulo(click,posicao).x.toString());
-
+  if((isPlayer1 && opcaoPlayer1 ===6)||(!isPlayer1 && opcaoPlayer2 ===6)){
+    text = "Decriez: ??";
+  }
 
   context.fillText(text,click.x+20,click.y-50);
 
@@ -134,31 +139,35 @@ function criaPlayer(numPlayer, canvas,altura, largura){
     var player = new Image();
     player.src = opcoes[opcaoPlayer1-1].ingame.src;
     player.onload = function(){
-      canvas.drawImage(player, 20, altura-104); // tamanho em px do icone do player
+      canvas.drawImage(player, 20, altura-104, 40,104); // tamanho em px do icone do player
       $('#player1-image').css("background-image", `url(${player.src})`);
       projectilPlayer1.image.src = opcoes[opcaoPlayer1-1].projetil.src;
       player1.posicao.x = 20;
       player1.posicao.y = altura-104;
-      player1.tamanho.width = player.width;
-      player1.tamanho.height = player.height;
+      player1.tamanho.width = 40;
+      player1.tamanho.height = 104;
       projectilPlayer1.position.x = player1.posicao.x + 5;
       projectilPlayer1.position.y = player1.posicao.y - 24;
+      skills(opcaoPlayer1,player1,projectilPlayer1);
     }
+
     break;
     case 2:
     var player = new Image();
     player.src = opcoes[opcaoPlayer2-1].ingame.src;
     player.onload = function(){
-      canvas.drawImage(player, largura, altura-104); // tamanho em px do icone do player
+      canvas.drawImage(player, largura, altura-104,40,104); // tamanho em px do icone do player
       $('#player2-image').css("background-image", `url(${player.src})`);
       projectilPlayer2.image.src = opcoes[opcaoPlayer2-1].projetil.src;
       player2.posicao.x = largura;
       player2.posicao.y = altura-97;
-      player2.tamanho.width = player.width;
-      player2.tamanho.height = player.height;
+      player2.tamanho.width = 40;
+      player2.tamanho.height = 104;
       projectilPlayer2.position.x = player2.posicao.x;
       projectilPlayer2.position.y = player2.posicao.y;
+      skills(opcaoPlayer2, player2,projectilPlayer2);
     }
+
     playercriado = true;
     break;
   }
@@ -167,67 +176,105 @@ function criaPlayer(numPlayer, canvas,altura, largura){
 
 function acaoclick(coordenadas){
 
+  if(selecionando){
+    if(coordenadas.x>350 && coordenadas.x<500 && coordenadas.y>380&& coordenadas.y<480){
+      opcaoselecionada = optionSelectedtemp;
+      selecionando = false;
+      selecionado = true;
+    }else if(coordenadas.x>560 && coordenadas.x<800 && coordenadas.y>380&& coordenadas.y<480){
+      selecionando = false;
+      criaMenuSelect(contextoTemporario);
+    }
+  }else if(!player1selecionado || !player2selecionado){
+      detailMenu(coordenadas);
+  }
+
+  if(selecionado){
+
   if(player1selecionado && !player2selecionado){
-
-    opcaoPlayer2= seleciona_opcao(coordenadas);
-
-    if (opcaoPlayer2) {
-
-      player2selecionado = true;
-      buildscenario(context);
-    };
+    player2selecionado = true;
+    selecionando = false;
+    opcaoPlayer2 = opcaoselecionada;
+    selecionado = false;
+    buildscenario(context);
   }
 
   if(!player1selecionado && !player2selecionado){
-
-    opcaoPlayer1 = seleciona_opcao(coordenadas);
-
-    if (opcaoPlayer1) player1selecionado = true;
+      player1selecionado = true;
+      selecionando = false;
+      opcaoPlayer1 = opcaoselecionada;
+      selecionado = false;
       criaMenuSelect(contextoTemporario);
+
+}
+}
+if(isRestart){
+  if(coordenadas.x>360 && coordenadas.x<640 && coordenadas.y>390&& coordenadas.y<470)
+  {
+    context.clearRect(0,0,1000,600);
+    contextoTemporario.clearRect(0,0,1000,600);
+    window.clearInterval(intervaloJogada); //impede que jogada rode enquanto está na tela de seleção de personagem depois do restart.
+    start();
   }
-
-  if (player1selecionado && player2selecionado) {
-
-
-  }
-
-  if(isRestart){
-    if(coordenadas.x>360 && coordenadas.x<640 && coordenadas.y>390&& coordenadas.y<470)
-    {
-      context.clearRect(0,0,1000,600);
-      contextoTemporario.clearRect(0,0,1000,600);
-      window.clearInterval(intervaloJogada); //impede que jogada rode enquanto está na tela de seleção de personagem depois do restart.
-      start();
-    }
-  }
+}
 
 }
 
 
-function seleciona_opcao(coordenadas){
+function detailMenu(coordenadas){
   var opcaoselecionada;
+  criaMenuEsboco(contextoTemporario);
+  contextoTemporario.fillStyle = "#FFF";
+  contextoTemporario.font = "30px 'Press Start 2P'";
+  selecionando = true;
+  designButtons();
   // se não foi selecionado nenhum player ainda é feita a seleção de acordo com as coordenadas do click
-  if(coordenadas.x>130 && coordenadas.x<280 && coordenadas.y>177 && coordenadas.y<330){
-    opcaoselecionada = 1;
-  }else if (coordenadas.x>330 && coordenadas.x<480 && coordenadas.y>177 && coordenadas.y<330) {
-    opcaoselecionada = 2;
-  }else if (coordenadas.x>530 && coordenadas.x<680 && coordenadas.y>177 && coordenadas.y<330) {
-    opcaoselecionada = 3;
-  }else if (coordenadas.x>730 && coordenadas.x<880 && coordenadas.y>177 && coordenadas.y<330) {
-    opcaoselecionada = 4;
-  }else if(coordenadas.x>130 && coordenadas.x<280 && coordenadas.y>360 && coordenadas.y<510){
-    opcaoselecionada = 5;
-  }else if (coordenadas.x>330 && coordenadas.x<480 && coordenadas.y>360 && coordenadas.y<510) {
-    opcaoselecionada = 6;
-  }else if (coordenadas.x>530 && coordenadas.x<680 && coordenadas.y>360 && coordenadas.y<510) {
-    opcaoselecionada = 7;
-  }else if (coordenadas.x>730 && coordenadas.x<880 && coordenadas.y>360 && coordenadas.y<510) {
-    opcaoselecionada = 8;
-  }
-  criaMenuSelect(contextoTemporario);
-  return opcaoselecionada;
 
+  if(coordenadas.x>130 && coordenadas.x<280 && coordenadas.y>177 && coordenadas.y<330){
+    optionSelectedtemp = 1;
+    contextoTemporario.fillText("OBAMACHINE",450,140,550);
+    contextoTemporario.fillText("Pros: ObamaCare give him one more life",350,200,550);
+    contextoTemporario.fillText("Cons: none yet",350,300,550);
+  }else if (coordenadas.x>330 && coordenadas.x<480 && coordenadas.y>177 && coordenadas.y<330) {
+    optionSelectedtemp = 2;
+    contextoTemporario.fillText("Mother of Swan",380,140,550);
+    contextoTemporario.fillText("Pros: Wind blows always in her favor",350,200,550);
+    contextoTemporario.fillText("Cons:.... her... age(?)",350,300,550); // diminuir potencia
+  }else if (coordenadas.x>530 && coordenadas.x<680 && coordenadas.y>177 && coordenadas.y<330) {
+    optionSelectedtemp = 3;
+    contextoTemporario.fillText("Agent orange",425,140,550);
+    contextoTemporario.fillText("Pros: He starts with a wall around him!",350,200,550);
+    contextoTemporario.fillText("Cons: The wall doesn't make any difference",350,300,550);
+  }else if (coordenadas.x>730 && coordenadas.x<880 && coordenadas.y>177 && coordenadas.y<330) {
+    optionSelectedtemp = 4;
+    contextoTemporario.fillText("Canadian gentlemen",350,140,550);
+    contextoTemporario.fillText("Pros: He apologizes when he hits an enemy",350,200,550);
+    contextoTemporario.fillText("Cons: He doesn't want to kill his enemies ",350,300,550);
+  }else if(coordenadas.x>130 && coordenadas.x<280 && coordenadas.y>360 && coordenadas.y<510){
+    optionSelectedtemp = 5;
+    contextoTemporario.fillText("Beberronis Vodkius",360,140,550);
+    contextoTemporario.fillText("Pros: He rides a bear!",350,200,550);
+    contextoTemporario.fillText("Cons: In Russia the game play you",350,300,550);
+  }else if (coordenadas.x>330 && coordenadas.x<480 && coordenadas.y>360 && coordenadas.y<510) {
+    optionSelectedtemp = 6;
+    contextoTemporario.fillText("I know nothing!",380,140,550);
+    contextoTemporario.fillText("Pros: He has a Triplex!",350,200,550);
+    contextoTemporario.fillText("Cons: Supposedly illiterate",350,300,550);
+  }else if (coordenadas.x>530 && coordenadas.x<680 && coordenadas.y>360 && coordenadas.y<510) {
+    optionSelectedtemp = 7;
+    contextoTemporario.fillText("Woman-Sapiens",400,140,550);
+    contextoTemporario.fillText("Pros: She \"stores wind\", so she will not be affected by it!",350,200,550);
+    contextoTemporario.fillText("Cons: Your game might end sooner.",350,300,550);
+  }else if (coordenadas.x>730 && coordenadas.x<880 && coordenadas.y>360 && coordenadas.y<510) {
+    optionSelectedtemp = 8;
+    contextoTemporario.fillText("Pyng Pong",450,140,550);
+    contextoTemporario.fillText("Pros: He has his own country",350,200,550);
+    contextoTemporario.fillText("Cons:  His projectile is really tiny",350,300,550);
+  }
+    contextoTemporario.drawImage(opcoes[optionSelectedtemp-1].ingame,100,100,200,400);
 }
+
+
 
 function constroiObjetosImages(){
 
@@ -242,4 +289,46 @@ function constroiObjetosImages(){
     opcoes.push(opcao);
 
   }
+}
+
+function designButtons(){
+  //ok button
+  contextoTemporario.fillStyle = "#002146";
+  roundRect(contextoTemporario,350,380,150,100,20,true,false);
+  contextoTemporario.fillStyle = "#124266";
+  roundRect(contextoTemporario,360,390,130,80,20,true,false);
+  contextoTemporario.fillStyle = "#FFF";
+  contextoTemporario.font = "35px 'Press Start 2P'";
+  contextoTemporario.fillText("Ok",390,445);
+  //Cancel button
+  contextoTemporario.fillStyle = "#002146";
+  roundRect(contextoTemporario,550,380,260,100,20,true,false);
+  contextoTemporario.fillStyle = "#124266";
+  roundRect(contextoTemporario,560,390,240,80,20,true,false);
+  contextoTemporario.fillStyle = "#FFF";
+  contextoTemporario.font = "35px 'Press Start 2P'";
+  contextoTemporario.fillText("Cancel",580,445);
+}
+
+function skills(option,player, projetil){
+switch (option){
+  case 1:
+    player.vida = player.vida +1;
+  break;
+  case 3:
+    var tijolo = new Image();
+    tijolo.src = opcoes[option-1].projetil.src;
+    for(var i = 0 ; i<21;i++){
+      if(i<8){
+        context.drawImage(tijolo,player.posicao.x -40,player.posicao.y-30+(i*17)); //desenha 1 coluna
+      }else if(i<14){
+        context.drawImage(tijolo,player.posicao.x -162+(i*18),player.posicao.y-30); // desenha parte de cima
+      }else{
+        context.drawImage(tijolo,player.posicao.x +74,player.posicao.y-252+(i*17)); //desenha 1 coluna
+      }
+    }
+  break;
+
+}
+
 }
