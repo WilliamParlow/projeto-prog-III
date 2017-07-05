@@ -196,6 +196,8 @@ function acaoclick(coordenadas){
     selecionando = false;
     opcaoPlayer2 = opcaoselecionada;
     selecionado = false;
+    windForce = map(Math.random() * 1000, 0, 1000, -0.035, 0.035);
+    changeWindIntensityStyle(windForce);
     buildscenario(context);
   }
 

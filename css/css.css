@@ -42,16 +42,13 @@ height: auto;
   height: 60px;
   flex-direction: column;
   position: absolute;
-  margin-left: 200px
+  margin-left: 200px;
 }
 
 .warning{
-  height: 100%;
-<<<<<<< HEAD
-  width: 80%;
-=======
-  width: 800px;
->>>>>>> d26b01b03b2deb74267f7f62a444df14d4644313
+  height: 100%;y
+  width: 80%;y
+  width: 800px;y
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   color: #FFF;

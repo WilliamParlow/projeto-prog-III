@@ -175,6 +175,8 @@ function analisaImpactoPredio(projetil){
 }
 
 function encerraJogada(projetil){
+  windForce = map(Math.random() * 1000, 0, 1000, -0.035, 0.035);
+  changeWindIntensityStyle(windForce);
   projetil.position.y = projectilPosIniY;
   projetil.position.x = projectilPosIniX;
   numeroJogada=0;
@@ -247,9 +249,11 @@ function gameRestart(){
 }
 
 function changeWindIntensityStyle(value) {
-  if (value > 0) {
-    $('#wind').css('','');
+  if (value < 0.0) {
+    console.log("H");
+    $('#wind').css('transform','rotateY(0deg)');
   } else {
-
+    console.log("W");
+    $('#wind').css('transform','rotateY(180deg)');
   }
 }
