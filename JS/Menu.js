@@ -87,7 +87,7 @@ function music(){
   setMusicConfig( musicTrack, musicOrigins[ Math.round( Math.random() * 7 ) ] )
 }
 
-function setMusicConfig(music, origin) {
+function setMusicConfig(music, origin) {  
 
   music.src = origin;
   music.loop = true;

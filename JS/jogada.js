@@ -1,10 +1,13 @@
+// responsável pela limitação da força do vento dentro de um range
 function map(x, in_min, in_max, out_min, out_max) {
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
+//função da jogada em si, desde o momento em que o projetil sai do player até acertar alguma coisa ou sair do canvas.
 var jogada = function() {
   // define qual o jogador que está sendo manipulado agora. Se for o primeiro frame da jogada
   // grava as posições iniciais para resetar após a jogada ser finalizada
+  if(!isRestart){
   playable = false;
 
   var projectil;
@@ -37,10 +40,12 @@ var jogada = function() {
       player = player1;
     }
   }
+
+  //verifica se o player selecionado é a Dilma, e atribui valor zero ao vento, por causa da sua skill
 if((opcaoPlayer1 === 7 && !isPlayer1)||(opcaoPlayer2 ===7 && isPlayer1)){
   windForce = 0;
 }
-
+// verifica se o player selecionado é a rainha. se for o vento recebe valor negativo ou positivo, sempre a favor do player, #skill
 if(opcaoPlayer1 ===2 && !isPlayer1){
   windForce = Math.abs(windForce);
 }else if(opcaoPlayer2 ===2 && isPlayer1){
@@ -48,8 +53,7 @@ if(opcaoPlayer1 ===2 && !isPlayer1){
 }
 
   // parte da física do game
-
-  // Do physics
+  //calculo de vetores de força x e y
   // Drag force: Fd = -1/2 * Cd * A * rho * v * v
   var Fx = -0.5 * projectil.Cd * projectil.A * projectil.rho * projectil.velocity.x * projectil.velocity.x * projectil.velocity.x / Math.abs(projectil.velocity.x);
   var Fy = -0.5 * projectil.Cd * projectil.A * projectil.rho * projectil.velocity.y * projectil.velocity.y * projectil.velocity.y / Math.abs(projectil.velocity.y);
@@ -58,10 +62,10 @@ if(opcaoPlayer1 ===2 && !isPlayer1){
   Fx = (isNaN(Fx) ? 0 : Fx);
   Fy = (isNaN(Fy) ? 0 : Fy);
 
-  // Calculate acceleration ( F = ma )
+  // Calcula aceleração ( F = ma )
   var ax = Fx / projectil.mass;
   var ay = projectil.ag + (Fy / projectil.mass);
-  // Integrate to get velocity
+  // Integrate to get velocity. é aqui que o vento faz difereça, pois é incluso direto na velocidade do projetil no eixo x.
   projectil.velocity.x += ax*frameRate + windForce;
   projectil.velocity.y += ay*frameRate;
 
@@ -74,7 +78,7 @@ if(opcaoPlayer1 ===2 && !isPlayer1){
   contextoTemporario.clearRect(0,0,canvasTemporario.width,canvasTemporario.height);
   contextoTemporario.closePath();
 
-  // Rotaciona projetil em "projectilAngleº", desenhando ele nas posições x,y e por ultimo, as coordenadas do eixo de rotação
+
   rotacionaProjetil ( contextoTemporario, projectil.image, projectilAngle*(Math.PI/180), projectil.position.x, projectil.position.y, 15, 12 );
   projectilAngle += 1.5;
 
@@ -86,9 +90,9 @@ if(opcaoPlayer1 ===2 && !isPlayer1){
     encerraJogada(projectil);
   }
 
-
 }
-
+}
+// Rotaciona projetil em "projectilAngleº", desenhando ele nas posições x,y e por ultimo, as coordenadas do eixo de rotação
 function rotacionaProjetil ( context, image, angleInRad , positionX, positionY, axisX, axisY ) {
   context.translate( positionX, positionY );
   context.rotate( angleInRad );
@@ -98,6 +102,7 @@ function rotacionaProjetil ( context, image, angleInRad , positionX, positionY, 
 
 }
 
+// impede que o player selecione de um ponto ao outro do canvas e a velocidade seja calculada na diferença das posições dos pixeis.
 function limitaVelocidade (){
   var x = (mouseclick.x - mousePos.x) / 20;
   var y = (mouseclick.y - mousePos.y)/20;
@@ -121,6 +126,7 @@ function limitaVelocidade (){
   }
 }
 
+// analisa impacto do projetil com player. verificando se a posição do projetil é a mesma do player adversario. Essa função já altera os diamantes e diminui a vida dos objetos players. Caso a vida de um deles chegue a zero é essa função que chama a tela de winner.
 function analisaImpactoPlayer(projetil, player){
   if(projetil.position.x > player.posicao.x && projetil.position.x <(player.posicao.x +player.tamanho.width)){
     if(projetil.position.y > player.posicao.y && projetil.position.y <(player.posicao.y +player.tamanho.height)){
@@ -154,6 +160,7 @@ function analisaImpactoPlayer(projetil, player){
 
 }
 
+// analisa impacto do projetil com prédios, A todo momento essa função varre todos os danos já criados, pois se o projetil está em area já destruida o mesmo segue com sua tragetória.
 function analisaImpactoPredio(projetil){
   for(var i = 0; i< predios.length; i++){
     if(projetil.position.x > predios[i].XInicial && projetil.position.x < predios[i].XFinal){ //testa se está na área de um predio
@@ -174,6 +181,8 @@ function analisaImpactoPredio(projetil){
   }
 }
 
+
+//função importante, encerra a jogada e permite que outras coisas aconteçam no game. ela encerra a jogada(que por padrão roda indefinidamente), é nela que ocorrem algumas correções de bugs também.
 function encerraJogada(projetil){
   windForce = map(Math.random() * 1000, 0, 1000, -0.035, 0.035);
   changeWindIntensityStyle(windForce);
@@ -195,8 +204,8 @@ function encerraJogada(projetil){
   context.drawImage(player2.image,player2.posicao.x,player2.posicao.y,40,104);
 }
 
+//Cria todas as damages da partida, e armazena em vetor, para que fique fácil de varrer e verificar depois.
 function createDamage(projetil,context){
-
   context.clearRect(projetil.position.x-20,projetil.position.y-20,40,40);
   var damage = new Object();
   damage.xin= projetil.position.x-20;
@@ -206,6 +215,7 @@ function createDamage(projetil,context){
   damages.push(damage);
 }
 
+//Cria a tela de fim de jogo.
 function winner(player_loser){
   context.clearRect(0,0,1000,600);
   contextoTemporario.clearRect(0,0,1000,600);
@@ -228,6 +238,7 @@ function winner(player_loser){
   restartButton();
 }
 
+//funçao responsavel por resetar todas as variáveis importantes do game. Quando o jogo reinicia os players devem ser zerados, e várias variaveis de controle são revertidas ao seu estado inicial
 function gameRestart(){
   $(".diamond").removeClass("lifeLost");
   isRestart = false;
@@ -251,12 +262,11 @@ function gameRestart(){
   criaMenuSelect();
 }
 
+//muda a direção do galinho de vento
 function changeWindIntensityStyle(value) {
   if (value < 0.0) {
-    console.log("H");
     $('#wind').css('transform','rotateY(0deg)');
   } else {
-    console.log("W");
     $('#wind').css('transform','rotateY(180deg)');
   }
 }

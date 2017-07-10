@@ -1,5 +1,5 @@
 // cria o senário
-function buildscenario(context){
+function buildscenario(context){ //função responsável pela construção do cenário como um todo, enquanto o canvas não for completamente preenchido por prédios a função continua criando-os. Esta função também é responsável pelo posicionamento dos players
   contextoTemporario.clearRect(0,0,1000,600); // apaga a tela de seleção de personagens
   var largTotal = 0; // recebe a largura total já desenhada no cavas, serve de referencia para saber onde deve ser desenhando o proximo prédio
   while(largTotal < canvas.width){
@@ -15,7 +15,7 @@ function buildscenario(context){
     largTotal = largTotal + largura +5; // 5px é a margem entre um prédio e outro
 
   }
-
+// trecho de código que manipula o campo que indica qual usuario está ativo no inicio do jogo
   $("#warn-container").removeClass('hide');
   if (isPlayer1) {
     $(playersUI[0]).addClass('player-active')
@@ -27,7 +27,7 @@ function buildscenario(context){
 
 }
 
-// Cria os predios
+// Cria os predios, pintando-os, e armazenando-os em um array, assim fica mais fácil de manipula-los depois quando for necessário criar os danos causados pelos projéteis
 function createBuilding(altura, largura, larguraTotal){
   var predio = {
     XInicial:0,
@@ -68,25 +68,25 @@ function createBuilding(altura, largura, larguraTotal){
   }
 }
 
-// Cria a flecha que aponta a direção para lançar o objeto
+// Cria a flecha que aponta a direção para lançar o objeto, não ocorre se estiver em tela de loading/restart ou seleção
 function canvas_arrow(context, fromx, fromy, tox, toy){
-  context.beginPath();
-  context.clearRect(0,0,canvasTemporario.width,canvasTemporario.height);
+    context.beginPath();
+    context.clearRect(0,0,canvasTemporario.width,canvasTemporario.height);
 
-  var headlen = 20;   // length of head in pixels
-  var angle = Math.atan2(toy-fromy,tox-fromx);
-  context.moveTo(fromx, fromy);
-  context.lineTo(tox, toy);
-  context.lineTo(tox-headlen*Math.cos(angle-Math.PI/6),toy-headlen*Math.sin(angle-Math.PI/6));
-  context.moveTo(tox, toy);
-  context.lineTo(tox-headlen*Math.cos(angle+Math.PI/6),toy-headlen*Math.sin(angle+Math.PI/6));
-  context.strokeStyle = '#FFF';
-  context.lineWidth = 3;
-  context.stroke();
+    var headlen = 20;   // length of head in pixels
+    var angle = Math.atan2(toy-fromy,tox-fromx);
+    context.moveTo(fromx, fromy);
+    context.lineTo(tox, toy);
+    context.lineTo(tox-headlen*Math.cos(angle-Math.PI/6),toy-headlen*Math.sin(angle-Math.PI/6));
+    context.moveTo(tox, toy);
+    context.lineTo(tox-headlen*Math.cos(angle+Math.PI/6),toy-headlen*Math.sin(angle+Math.PI/6));
+    context.strokeStyle = '#FFF';
+    context.lineWidth = 3;
+    context.stroke();
 
 }
 
-// Cria o texto do valor do ângulo e força
+// Cria o texto do valor do ângulo e força. Se algum player escolher o personagem "lula" ele não mosta os dados, substituindo-os por caracteres fixos
 function canvas_text(context,click,posicao){
   var num =Math.round(calculaAngulo(click,posicao).h/2.5);
   if(num<0){
@@ -127,12 +127,11 @@ function calculaAngulo(click,posicao){
   }
 }
 
-
 Math.degrees = function(radians) {
   return radians * (180 / 3.14159265359);
 };
 
-// Cria os players
+// Cria os objetos dos players 1 e 2. A função desenha as imagens dos players nos locais indicados pela função buildscenario. Cria também os objetos dos projeteis de cada jogador.
 function criaPlayer(numPlayer, canvas,altura, largura){
   switch (numPlayer){
     case 1:
@@ -175,9 +174,9 @@ function criaPlayer(numPlayer, canvas,altura, largura){
   }
 
 }
-
+// Essa é uma das principais funções do game, é ela quem trata cada click e chama as funções de acão de acordo com as coordenas e do estado em que o game se encontra (tela de restart/tela de selecao/durante uma jogada, etc.) As funções em si eu vou explicar melhor nó próprio codigo
 function acaoclick(coordenadas){
-
+if(!isRestart){
   if(selecionando){
     if(coordenadas.x>350 && coordenadas.x<500 && coordenadas.y>380&& coordenadas.y<480){
       opcaoselecionada = optionSelectedtemp;
@@ -212,7 +211,8 @@ function acaoclick(coordenadas){
 
 }
 }
-if(isRestart){
+}
+else {
   if(coordenadas.x>360 && coordenadas.x<640 && coordenadas.y>390&& coordenadas.y<470)
   {
     context.clearRect(0,0,1000,600);
@@ -224,7 +224,7 @@ if(isRestart){
 
 }
 
-
+//Cria o menu de detalhe para cada opção selecionada (aquela com pros e contras). Basicamente faz isso de acordo com as coordenadas do click do usuario.
 function detailMenu(coordenadas){
   var opcaoselecionada;
   criaMenuEsboco(contextoTemporario);
@@ -290,7 +290,7 @@ function detailMenu(coordenadas){
 }
 
 
-
+//Função interessante! Apesar de simples ela ajuda muito. Ela constroi o objeto Opcao, que contem a imagem do player durante o jogo, a imagem do projetil desse player e a imagem que aparece na "bolinha" da tela de seleção e la em cima do lado da vida dos jogadores. Ela ajuda demais pois mantendo o padrão de nomes escolhidos, fica fácil incluir novas opções ou alterar as existentes.
 function constroiObjetosImages(){
 
   for(var i=0;i<politicians.length;i++){
@@ -306,6 +306,9 @@ function constroiObjetosImages(){
   }
 }
 
+
+
+// Simplesmente padroniza botões de ok e de cancelar
 function designButtons(){
   //ok button
   contextoTemporario.fillStyle = "#002146";
@@ -325,6 +328,7 @@ function designButtons(){
   contextoTemporario.fillText("Cancel",580,445);
 }
 
+// a ideia inicial era que todas as skills de todos os jogadores ficassem aqui, porém apenas 2 puderam ser implementadas no momento da criação do player, as demais tem que ser verificadas em tempo de execução, logo, ficaram espalhadas pelo código, my bad!
 function skills(option,player, projetil){
 switch (option){
   case 1:

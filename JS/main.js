@@ -5,7 +5,7 @@ $('#canvasTemporario').mousemove(function(e){ // coordenadas da posição do mou
     y : e.pageY - this.offsetTop
   };
 
-  if(clicado && playable){
+  if(clicado && playable && !isRestart){
 
     canvas_arrow(contextoTemporario,mousePos.x,mousePos.y,mouseclick.x,mouseclick.y);
     canvas_text(contextoTemporario,mouseclick,mousePos);
