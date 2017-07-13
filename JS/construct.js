@@ -15,7 +15,7 @@ function buildscenario(context){ //função responsável pela construção do ce
     largTotal = largTotal + largura +5; // 5px é a margem entre um prédio e outro
 
   }
-// trecho de código que manipula o campo que indica qual usuario está ativo no inicio do jogo
+  // trecho de código que manipula o campo que indica qual usuario está ativo no inicio do jogo
   $("#warn-container").removeClass('hide');
   if (isPlayer1) {
     $(playersUI[0]).addClass('player-active')
@@ -70,19 +70,19 @@ function createBuilding(altura, largura, larguraTotal){
 
 // Cria a flecha que aponta a direção para lançar o objeto, não ocorre se estiver em tela de loading/restart ou seleção
 function canvas_arrow(context, fromx, fromy, tox, toy){
-    context.beginPath();
-    context.clearRect(0,0,canvasTemporario.width,canvasTemporario.height);
+  context.beginPath();
+  context.clearRect(0,0,canvasTemporario.width,canvasTemporario.height);
 
-    var headlen = 20;   // length of head in pixels
-    var angle = Math.atan2(toy-fromy,tox-fromx);
-    context.moveTo(fromx, fromy);
-    context.lineTo(tox, toy);
-    context.lineTo(tox-headlen*Math.cos(angle-Math.PI/6),toy-headlen*Math.sin(angle-Math.PI/6));
-    context.moveTo(tox, toy);
-    context.lineTo(tox-headlen*Math.cos(angle+Math.PI/6),toy-headlen*Math.sin(angle+Math.PI/6));
-    context.strokeStyle = '#FFF';
-    context.lineWidth = 3;
-    context.stroke();
+  var headlen = 20;   // length of head in pixels
+  var angle = Math.atan2(toy-fromy,tox-fromx);
+  context.moveTo(fromx, fromy);
+  context.lineTo(tox, toy);
+  context.lineTo(tox-headlen*Math.cos(angle-Math.PI/6),toy-headlen*Math.sin(angle-Math.PI/6));
+  context.moveTo(tox, toy);
+  context.lineTo(tox-headlen*Math.cos(angle+Math.PI/6),toy-headlen*Math.sin(angle+Math.PI/6));
+  context.strokeStyle = '#FFF';
+  context.lineWidth = 3;
+  context.stroke();
 
 }
 
@@ -176,51 +176,51 @@ function criaPlayer(numPlayer, canvas,altura, largura){
 }
 // Essa é uma das principais funções do game, é ela quem trata cada click e chama as funções de acão de acordo com as coordenas e do estado em que o game se encontra (tela de restart/tela de selecao/durante uma jogada, etc.) As funções em si eu vou explicar melhor nó próprio codigo
 function acaoclick(coordenadas){
-if(!isRestart){
-  if(selecionando){
-    if(coordenadas.x>350 && coordenadas.x<500 && coordenadas.y>380&& coordenadas.y<480){
-      opcaoselecionada = optionSelectedtemp;
-      selecionando = false;
-      selecionado = true;
-    }else if(coordenadas.x>560 && coordenadas.x<800 && coordenadas.y>380&& coordenadas.y<480){
-      selecionando = false;
-      criaMenuSelect(contextoTemporario);
-    }
-  }else if(!player1selecionado || !player2selecionado){
+  if(!isRestart){
+    if(selecionando){
+      if(coordenadas.x>350 && coordenadas.x<500 && coordenadas.y>380&& coordenadas.y<480){
+        opcaoselecionada = optionSelectedtemp;
+        selecionando = false;
+        selecionado = true;
+      }else if(coordenadas.x>560 && coordenadas.x<800 && coordenadas.y>380&& coordenadas.y<480){
+        selecionando = false;
+        criaMenuSelect(contextoTemporario);
+      }
+    }else if(!player1selecionado || !player2selecionado){
       detailMenu(coordenadas);
+    }
+
+    if(selecionado){
+
+      if(player1selecionado && !player2selecionado){
+        player2selecionado = true;
+        selecionando = false;
+        opcaoPlayer2 = opcaoselecionada;
+        selecionado = false;
+        windForce = map(Math.random() * 1000, 0, 1000, -0.035, 0.035);
+        changeWindIntensityStyle(windForce);
+        buildscenario(context);
+      }
+
+      if(!player1selecionado && !player2selecionado){
+        player1selecionado = true;
+        selecionando = false;
+        opcaoPlayer1 = opcaoselecionada;
+        selecionado = false;
+        criaMenuSelect(contextoTemporario);
+
+      }
+    }
   }
-
-  if(selecionado){
-
-  if(player1selecionado && !player2selecionado){
-    player2selecionado = true;
-    selecionando = false;
-    opcaoPlayer2 = opcaoselecionada;
-    selecionado = false;
-    windForce = map(Math.random() * 1000, 0, 1000, -0.035, 0.035);
-    changeWindIntensityStyle(windForce);
-    buildscenario(context);
+  else {
+    if(coordenadas.x>360 && coordenadas.x<640 && coordenadas.y>390&& coordenadas.y<470)
+    {
+      context.clearRect(0,0,1000,600);
+      contextoTemporario.clearRect(0,0,1000,600);
+      window.clearInterval(intervaloJogada); //impede que jogada rode enquanto está na tela de seleção de personagem depois do restart.
+      start();
+    }
   }
-
-  if(!player1selecionado && !player2selecionado){
-      player1selecionado = true;
-      selecionando = false;
-      opcaoPlayer1 = opcaoselecionada;
-      selecionado = false;
-      criaMenuSelect(contextoTemporario);
-
-}
-}
-}
-else {
-  if(coordenadas.x>360 && coordenadas.x<640 && coordenadas.y>390&& coordenadas.y<470)
-  {
-    context.clearRect(0,0,1000,600);
-    contextoTemporario.clearRect(0,0,1000,600);
-    window.clearInterval(intervaloJogada); //impede que jogada rode enquanto está na tela de seleção de personagem depois do restart.
-    start();
-  }
-}
 
 }
 
@@ -330,11 +330,11 @@ function designButtons(){
 
 // a ideia inicial era que todas as skills de todos os jogadores ficassem aqui, porém apenas 2 puderam ser implementadas no momento da criação do player, as demais tem que ser verificadas em tempo de execução, logo, ficaram espalhadas pelo código, my bad!
 function skills(option,player, projetil){
-switch (option){
-  case 1:
+  switch (option){
+    case 1:
     player.vida = player.vida +1;
-  break;
-  case 3:
+    break;
+    case 3:
     var tijolo = new Image();
     tijolo.src = opcoes[option-1].projetil.src;
     for(var i = 0 ; i<21;i++){
@@ -346,8 +346,8 @@ switch (option){
         context.drawImage(tijolo,player.posicao.x +74,player.posicao.y-252+(i*17)); //desenha 1 coluna
       }
     }
-  break;
+    break;
 
-}
+  }
 
 }
